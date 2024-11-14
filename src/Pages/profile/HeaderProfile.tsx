@@ -12,24 +12,26 @@ const HeaderProfile = () => {
   }
 
   return (
-    <Box>
+    <Box sx={{
+      p: '20px',
+    }}>
     <Box sx={{
       display: 'flex'
     }}>
       <ListItemButton onClick={() => handleClick('info')}
-        sx={{ height: '36px', padding: '0 16px', display: 'flex', alignItems: 'center' }}
+        sx={{ width: '160px', height: '42px', padding: '0', display: 'flex', alignItems: 'center' }}
       >
-        <ListItemText primary='Личные данные' />
+        <ListItemText sx={{m: '0'}} primary='Личные данные' />
       </ListItemButton>
       <ListItemButton onClick={() => handleClick('contacts')}
-        sx={{ height: '36px', padding: '0 16px', display: 'flex', alignItems: 'center' }}
+        sx={{ width: '160px', height: '42px', padding: '0', display: 'flex', alignItems: 'center' }}
       >
-        <ListItemText primary='Контакты' />
+        <ListItemText sx={{m: '0'}} primary='Контакты' />
       </ListItemButton>
       <ListItemButton onClick={() => handleClick('favorites')}
-        sx={{ height: '36px', padding: '0 16px', display: 'flex', alignItems: 'center' }}
+        sx={{ width: '160px', height: '42px', padding: '0', display: 'flex', alignItems: 'center' }}
       >
-        <ListItemText primary='Избранное' />
+        <ListItemText sx={{m: '0'}} primary='Избранное' />
       </ListItemButton>
     </Box>
     <Box>

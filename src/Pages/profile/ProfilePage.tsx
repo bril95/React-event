@@ -2,7 +2,7 @@ import { Typography, Box } from "@mui/material";
 import HeaderProfile from "./HeaderProfile";
 import PreviewProfile from "./PreviewProfile";
 
-const Profile = () => {
+const ProfilePage = () => {
   return (
     <Box>
       <Typography>Мой профиль</Typography>
@@ -18,4 +18,4 @@ const Profile = () => {
   )
 }
 
-export default Profile;
+export default ProfilePage;
