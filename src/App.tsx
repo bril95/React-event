@@ -13,6 +13,7 @@ import Layout from './Pages/Layout';
 import AuthPage from './Pages/authorization/AuthPage';
 import ProfilePage from './Pages/profile/ProfilePage';
 import 'react-toastify/dist/ReactToastify.css';
+import CatalogPage from './Pages/catalog/CatalogPage';
 
 // interface ProtectedRouteProps {
 //   element: React.ReactElement;
@@ -28,9 +29,10 @@ const App = () => (
   <Provider store={store}>
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={<Layout />}>
+        <Route element={<Layout />}>
           <Route path="/login" element={<AuthPage />} />
           <Route path="/profile" element={<ProfilePage />}/>
+          <Route path="/" element={<CatalogPage />}/>
         </Route>
       </Routes>
       <ToastContainer position="bottom-right" theme="colored"/>
