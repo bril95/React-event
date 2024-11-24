@@ -54,7 +54,7 @@ const Login = () => {
 
   const submit: SubmitHandler<MyForm> = async (data) => {
     try {
-      const response = await axios.post('https://natticharity.eveloth.ru/api/auth', data);
+      const response = await axios.post('http://localhost:4040/api/auth', data);
       const token = response.data.token;
       const isAuthorized = response.data.auth;
       dispatch(setAuthUser(token));

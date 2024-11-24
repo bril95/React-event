@@ -4,13 +4,11 @@ import { RootState } from '../store/store';
 type User = {
   token: string | null,
   isAuthorized: boolean,
-  view: string,
 }
 
 const initialState: User = {
   token: null,
   isAuthorized: false,
-  view: "grid",
 };
 
 const authSlice = createSlice({

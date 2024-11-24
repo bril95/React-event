@@ -30,7 +30,7 @@ const App = () => (
       <Routes>
         <Route path="/" element={<Layout />}>
           <Route path="/login" element={<AuthPage />} />
-            <Route path="/profile" element={<ProfilePage />}/>
+          <Route path="/profile" element={<ProfilePage />}/>
         </Route>
       </Routes>
       <ToastContainer position="bottom-right" theme="colored"/>
