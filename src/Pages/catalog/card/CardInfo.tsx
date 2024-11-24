@@ -1,5 +1,6 @@
 import { CardMedia, Card, CardContent, CardActions, Button, Typography, Box, IconButton } from "@mui/material";
 import StarBorderIcon from '@mui/icons-material/StarBorder';
+import Info from "./Info";
 
 const CardInfo = () => {
   return (
@@ -23,39 +24,22 @@ const CardInfo = () => {
             <StarBorderIcon />
           </IconButton>
         </Box>
-        <Typography>
-          
-        </Typography>
-        <Typography>
-          Организатор
-        </Typography>
-        <Typography>
-        Фонд помощи для ветеранов и инвалидов "Вера"
-        </Typography>
-        <Typography>
-        Локация
-        </Typography>
-        <Typography>
-        Область: Владимирская
-        </Typography>
-        <Typography>
-        Цель сбора
-        </Typography>
-        <Typography>
-        Оплатить лечение МКБ в клинике "Здоровье". Купить одежду на...
-        </Typography>
-        <Typography>
-        Завершение
-        </Typography>
-        <Typography>
-        20.03.2025
-        </Typography>
-        <Typography>
-        Мы собрали
-        </Typography>
+        <Info />
       </CardContent>
       <CardActions>
-        <Button>Помочь</Button>
+        <Button
+          sx={{
+            width: '100%',
+            boxSizing: 'border-box',
+            height: '42px',
+            mt: '10px',
+          }}
+          color="primary"
+          variant="contained"
+          type="submit"
+        >
+          Помочь
+      </Button>
       </CardActions>
     </Card>
   )

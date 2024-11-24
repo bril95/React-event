@@ -171,7 +171,7 @@ const Login = () => {
             variant="contained"
             type="submit"
           >
-            {'Войти'}
+            Войти
           </Button>
         </Box>
       </Box>
