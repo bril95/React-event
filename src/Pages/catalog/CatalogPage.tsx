@@ -13,7 +13,6 @@ const CatalogPage = () => {
       }}>
         <FilterBar />
         <Box sx={{
-          width: '100%'
         }}>
           <SearchBar />
           <CardProfile />

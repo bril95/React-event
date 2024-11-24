@@ -9,7 +9,8 @@ const CardProfile = () => {
     }}>
       <HeaderCardProfile />
       <Box sx={{
-        display: 'flex'
+        display: 'flex',
+        gap: '24px'
       }}>
         <CardInfo />
         <CardInfo />
