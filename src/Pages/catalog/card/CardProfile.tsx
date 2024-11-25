@@ -27,7 +27,7 @@ const CardProfile = () => {
     };
 
     fetchCards();
-  })
+  }, [token])
 
   const indexOfLastCard = page * cardsPerPage;
   const indexOfFirstCard = indexOfLastCard - cardsPerPage;
@@ -44,7 +44,7 @@ const CardProfile = () => {
       <HeaderCardProfile />
       <Box sx={{ display: 'flex', gap: '24px', flexWrap: 'wrap' }}>
         {currentCards.map((card, index) => (
-          <CardInfo key={index} card={card} />
+          <CardInfo key={index} card={card}/>
         ))}
       </Box>
       <Pagination

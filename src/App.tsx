@@ -14,6 +14,7 @@ import AuthPage from './Pages/authorization/AuthPage';
 import ProfilePage from './Pages/profile/ProfilePage';
 import 'react-toastify/dist/ReactToastify.css';
 import CatalogPage from './Pages/catalog/CatalogPage';
+import CurrentCard from './Pages/catalog/card/CurrentCard';
 
 // interface ProtectedRouteProps {
 //   element: React.ReactElement;
@@ -33,6 +34,7 @@ const App = () => (
           <Route path="/login" element={<AuthPage />} />
           <Route path="/profile" element={<ProfilePage />}/>
           <Route path="/" element={<CatalogPage />}/>
+          <Route path="/card/:id" element={<CurrentCard />}/>
         </Route>
       </Routes>
       <ToastContainer position="bottom-right" theme="colored"/>

@@ -2,14 +2,35 @@ import { CardMedia, Card, CardContent, CardActions, Button, Typography, Box, Ico
 import StarBorderIcon from '@mui/icons-material/StarBorder';
 import Info from "./Info";
 import CardType from "./CardType";
+import { useNavigate } from "react-router-dom";
+
 
 interface CardInfoProps {
   card: CardType;
 }
 
 const CardInfo: React.FC<CardInfoProps> = ({ card }) => {
+  const navigate = useNavigate()
+
+  const handleCardClick = (id: string) => {
+    console.log(id)
+    navigate(`card/${id}`, { state: { id } });
+  }
+
+  const handleFavoriteClick = (e: React.MouseEvent) => {
+    e.stopPropagation();
+    console.log('Favorite');
+  }
+
+  const handleHelpClick = (e: React.MouseEvent) => {
+    e.stopPropagation();
+    console.log('Help');
+
+  }
+
   return (
-    <Card sx={{
+    <Card onClick={() => handleCardClick(card.id)}
+    sx={{
       width: '320px',
     }}>
       <CardMedia
@@ -27,7 +48,7 @@ const CardInfo: React.FC<CardInfoProps> = ({ card }) => {
           }}>
             {card.title}
           </Typography>
-          <IconButton disableRipple>
+          <IconButton disableRipple onClick={handleFavoriteClick}>
             <StarBorderIcon />
           </IconButton>
         </Box>
@@ -44,6 +65,7 @@ const CardInfo: React.FC<CardInfoProps> = ({ card }) => {
           color="primary"
           variant="contained"
           type="submit"
+          onClick={handleHelpClick}
         >
           Помочь
       </Button>

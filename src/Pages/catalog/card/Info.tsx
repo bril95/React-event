@@ -30,7 +30,13 @@ const Info: React.FC<CardInfoProps> = ({ card }) => {
       <Typography>{card.goalDescription}</Typography>
 
       <Typography variant="h6">Завершение</Typography>
-      <Typography>{new Date(card.endingDate).toLocaleDateString()}</Typography>
+      <Typography>
+        {new Date(card.endingDate).toLocaleDateString('ru-RU', {
+          day: '2-digit',
+          month: '2-digit',
+          year: 'numeric',
+        })}
+      </Typography>
 
       <Typography variant="h6">Мы собрали</Typography>
       <Typography>
