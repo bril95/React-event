@@ -27,13 +27,13 @@ const CardProfile = () => {
     };
 
     fetchCards();
-  }, [])
+  })
 
   const indexOfLastCard = page * cardsPerPage;
   const indexOfFirstCard = indexOfLastCard - cardsPerPage;
   const currentCards = cards.slice(indexOfFirstCard, indexOfLastCard);
 
-  const handleChangePage = (event, value: number) => {
+  const handleChangePage = (_event: React.ChangeEvent<unknown>, value: number) => {
     setPage(value);
   };
 

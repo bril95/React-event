@@ -7,8 +7,8 @@ type User = {
 }
 
 const initialState: User = {
-  token: null,
-  isAuthorized: false,
+  token: sessionStorage.getItem('token'),
+  isAuthorized: sessionStorage.getItem('isAuthorized') === 'true',
 };
 
 const authSlice = createSlice({
@@ -16,14 +16,17 @@ const authSlice = createSlice({
   initialState,
   reducers: {
     setAuthUser(state, { payload }: PayloadAction<string>) {
-      state.token = payload;
+      state.token = payload
+      sessionStorage.setItem('token', payload);
     },
     setIsAuthorized(state, { payload }: PayloadAction<boolean>) {
       state.isAuthorized = payload;
+      sessionStorage.setItem('isAuthorized', String(payload));
     },
     clearAuthState(state) {
       state.token = null;
       state.isAuthorized = false;
+      sessionStorage.clear();
     },
   },
 });
