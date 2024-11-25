@@ -1,8 +1,13 @@
 import { CardMedia, Card, CardContent, CardActions, Button, Typography, Box, IconButton } from "@mui/material";
 import StarBorderIcon from '@mui/icons-material/StarBorder';
 import Info from "./Info";
+import CardType from "./CardType";
 
-const CardInfo = () => {
+interface CardInfoProps {
+  card: CardType;
+}
+
+const CardInfo: React.FC<CardInfoProps> = ({ card }) => {
   return (
     <Card sx={{
       width: '320px',
@@ -17,14 +22,16 @@ const CardInfo = () => {
         <Box sx={{
           display: 'flex'
         }}>
-          <Typography>
-            Сбор средств для пенсионерки Ангелины Ивановны
+          <Typography variant="h5" sx={{
+            height: '128px'
+          }}>
+            {card.title}
           </Typography>
-          <IconButton>
+          <IconButton disableRipple>
             <StarBorderIcon />
           </IconButton>
         </Box>
-        <Info />
+        <Info card={card}/>
       </CardContent>
       <CardActions>
         <Button
