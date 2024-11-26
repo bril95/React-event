@@ -5,6 +5,14 @@ import axios from "axios";
 import { useSelector } from 'react-redux';
 import { selectSetAuthUser } from "../../../slice/authSlice";
 import CardType from "./CardType";
+import CardOrganization from "./cardDetails/CardOrganization";
+import CardTitle from "./cardDetails/CardTitle";
+import CardDescription from "./cardDetails/CardDescription";
+import CardSteps from "./cardDetails/CardSteps";
+import CardGoalDescription from "./cardDetails/CardGoalDescription";
+import CardEndingDate from "./cardDetails/CardEndingDate";
+import CardLocation from "./cardDetails/CardLocation";
+import CardContacts from "./cardDetails/CardContacts";
 
 const initialCard: CardType = {
   id: '',
@@ -51,62 +59,22 @@ const CurrentCard = () => {
     <Box>
       <Typography variant="h4">Запрос о помощи</Typography>
 
-      <Typography variant="h5">{card.title}</Typography>
-      <Typography variant="h6">Организация</Typography>
-      <Typography>{card.organization.title}</Typography>
+      <CardTitle card={card} />
+
+      <CardOrganization card={card} />
       <Typography>{card.organization.isVerified ? 'Организация проверена' : 'Организация не проверена'}</Typography>
 
-      <Typography variant="h6">Кому мы помогаем</Typography>
-      <Typography>{card.description}</Typography>
+      <CardDescription card={card} />
 
-      <Typography variant="h6">Цель сбора</Typography>
-      <Typography>{card.goalDescription}</Typography>
+      <CardGoalDescription card={card} />
 
-      <Typography variant="h6">План действий</Typography>
-      <Box>
-        {card.actionsSchedule.map((step) => (
-          <Typography key={step.stepLabel}>{step.stepLabel}</Typography>
-        ))}
-      </Box>
+      <CardSteps card={card} />
 
-      <Typography variant="h6">Завершение</Typography>
-      <Typography>
-        {new Date(card.endingDate).toLocaleDateString('ru-RU', {
-          day: '2-digit',
-          month: '2-digit',
-          year: 'numeric',
-        })}
-      </Typography>
+      <CardEndingDate card={card} />
 
-      <Typography variant="h6">Локация</Typography>
-      {
-        card.helperRequirements.isOnline 
-        ? <Typography>Онлайн</Typography>
-        : (
-          <Box>
-            <Typography>Область: {card.location.district}</Typography>
-            <Typography>Населенный пункт: {card.location.city}</Typography>
-          </Box>
-        )
-      }
+      <CardLocation card={card} />
 
-      <Typography variant="h6">Контакты</Typography>
-      <Box sx={{
-        display: 'flex',
-      }}>
-        <Box>
-          <Typography>Телефон</Typography>
-          <Typography>{card.contacts.phone}</Typography>
-        </Box>
-        <Box>
-          <Typography>E-mail</Typography>
-          <Typography>{card.contacts.email}</Typography>
-        </Box>
-        <Box>
-          <Typography>Сайт</Typography>
-          <Typography>{card.contacts.website}</Typography>
-        </Box>
-      </Box>
+      <CardContacts card={card} />
     </Box>
   )
 };
