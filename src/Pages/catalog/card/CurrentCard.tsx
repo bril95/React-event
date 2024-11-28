@@ -1,18 +1,12 @@
-import { Box, Typography } from "@mui/material";
+import { Box,Typography } from "@mui/material";
 import { useParams } from 'react-router-dom';
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { useSelector } from 'react-redux';
 import { selectSetAuthUser } from "../../../slice/authSlice";
 import CardType from "./CardType";
-import CardOrganization from "./cardDetails/CardOrganization";
-import CardTitle from "./cardDetails/CardTitle";
-import CardDescription from "./cardDetails/CardDescription";
-import CardSteps from "./cardDetails/CardSteps";
-import CardGoalDescription from "./cardDetails/CardGoalDescription";
-import CardEndingDate from "./cardDetails/CardEndingDate";
-import CardLocation from "./cardDetails/CardLocation";
-import CardContacts from "./cardDetails/CardContacts";
+import FullInfo from "./currentCard/FullInfo";
+import DonationSummary from "./currentCard/DonationSummary";
 
 const initialCard: CardType = {
   id: '',
@@ -58,24 +52,15 @@ const CurrentCard = () => {
   return (
     <Box>
       <Typography variant="h4">Запрос о помощи</Typography>
-
-      <CardTitle card={card} />
-
-      <CardOrganization card={card} />
-      <Typography>{card.organization.isVerified ? 'Организация проверена' : 'Организация не проверена'}</Typography>
-
-      <CardDescription card={card} />
-
-      <CardGoalDescription card={card} />
-
-      <CardSteps card={card} />
-
-      <CardEndingDate card={card} />
-
-      <CardLocation card={card} />
-
-      <CardContacts card={card} />
+      <Box sx={{
+        display: 'flex',
+        gap: '20px',
+      }}>
+        <FullInfo card={card}/>
+        <DonationSummary card={card}/>
+      </Box>
     </Box>
+
   )
 };
 

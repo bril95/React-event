@@ -1,8 +1,9 @@
-import { CardMedia, Card, CardContent, CardActions, Button, Typography, Box, IconButton } from "@mui/material";
+import { CardMedia, Card, CardContent, CardActions, Typography, Box, IconButton } from "@mui/material";
 import StarBorderIcon from '@mui/icons-material/StarBorder';
 import Info from "./Info";
 import CardType from "./CardType";
 import { useNavigate } from "react-router-dom";
+import HelpButton from "./currentCard/HelpButton";
 
 
 interface CardInfoProps {
@@ -20,12 +21,6 @@ const CardInfo: React.FC<CardInfoProps> = ({ card }) => {
   const handleFavoriteClick = (e: React.MouseEvent) => {
     e.stopPropagation();
     console.log('Favorite');
-  }
-
-  const handleHelpClick = (e: React.MouseEvent) => {
-    e.stopPropagation();
-    console.log('Help');
-
   }
 
   return (
@@ -55,20 +50,7 @@ const CardInfo: React.FC<CardInfoProps> = ({ card }) => {
         <Info card={card}/>
       </CardContent>
       <CardActions>
-        <Button
-          sx={{
-            width: '100%',
-            boxSizing: 'border-box',
-            height: '42px',
-            mt: '10px',
-          }}
-          color="primary"
-          variant="contained"
-          type="submit"
-          onClick={handleHelpClick}
-        >
-          Помочь
-      </Button>
+        <HelpButton />
       </CardActions>
     </Card>
   )
