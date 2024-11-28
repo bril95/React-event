@@ -5,12 +5,14 @@ import CardInfo from "./CardInfo";
 import axios from "axios";
 import { useSelector } from 'react-redux';
 import { selectSetAuthUser } from "../../../slice/authSlice";
+import ErrorPage from "../../common/ErrorPage";
 
 const CardProfile = () => {
   const token = useSelector(selectSetAuthUser);
   const [cards, setCards] = useState([]);
   const [page, setPage] = useState(1);
   const cardsPerPage = 3;
+  const [errorResp, setErrorResp] = useState(false);
 
   useEffect(() => {
     const fetchCards = async () => {
@@ -22,7 +24,9 @@ const CardProfile = () => {
         });
         setCards(allCards.data)
       } catch (error) {
-        console.error("Ошибка при загрузке данных:", error);
+        if (axios.isAxiosError(error) && error.response?.status === 500) {
+          setErrorResp(true);
+        }
       }
     };
 
@@ -41,19 +45,23 @@ const CardProfile = () => {
     <Box sx={{
       padding: '12px 36px 40px',
     }}>
-      <HeaderCardProfile />
-      <Box sx={{ display: 'flex', gap: '24px', flexWrap: 'wrap' }}>
-        {currentCards.map((card, index) => (
-          <CardInfo key={index} card={card}/>
-        ))}
-      </Box>
-      <Pagination
-        count={Math.ceil(cards.length / cardsPerPage)}
-        page={page}
-        onChange={handleChangePage}
-        color="primary"
-        sx={{ marginTop: '20px', display: 'flex', justifyContent: 'center' }}
-      />
+      {!errorResp ?
+      <Box>
+        <HeaderCardProfile />
+        <Box sx={{ display: 'flex', gap: '24px', flexWrap: 'wrap' }}>
+          {currentCards.map((card, index) => (
+            <CardInfo key={index} card={card}/>
+          ))}
+        </Box>
+        <Pagination
+          count={Math.ceil(cards.length / cardsPerPage)}
+          page={page}
+          onChange={handleChangePage}
+          color="primary"
+          sx={{ marginTop: '20px', display: 'flex', justifyContent: 'center' }}
+        />
+      </Box> :
+      <ErrorPage />}
     </Box>
   )
 };
