@@ -1,4 +1,3 @@
-import React from "react";
 import { Box, Typography, Button } from "@mui/material";
 import iconHeader from "../../assets/iconHeader.svg";
 import { useSelector } from "react-redux";

@@ -7,6 +7,7 @@ import { selectSetAuthUser } from "../../../slice/authSlice";
 import CardType from "./CardType";
 import FullInfo from "./currentCard/FullInfo";
 import DonationSummary from "./currentCard/DonationSummary";
+import ErrorPage from "../../common/ErrorPage";
 
 const initialCard: CardType = {
   id: '',
@@ -30,27 +31,33 @@ const CurrentCard = () => {
   const { id } = useParams();
   const token = useSelector(selectSetAuthUser);
   const [card, setCard] = useState<CardType>(initialCard);
+  const [errorResp, setErrorResp] = useState(false);
   
   useEffect(() => {
-    const fetchCards = async () => {
+    const fetchCard = async () => {
       try {
         const currentCard = await axios.get(`http://localhost:4040/api/request/${id}`, {
           headers: {
             Authorization: `Bearer ${token}`,
           },
         });
-        console.log(currentCard.data)
-        setCard(currentCard.data)
+        setErrorResp(false);
+        setCard(currentCard.data);
       } catch (error) {
-        console.error("Ошибка при загрузке данных:", error);
+        console.log(error)
+        if (axios.isAxiosError(error) && error.response?.status === 500) {
+          setErrorResp(true);
+        }
       }
     };
 
-    fetchCards();
-  }, [token, id])
+    fetchCard();
+  }, [])
 
   return (
     <Box>
+      {!errorResp ?
+      <Box>
       <Typography variant="h4">Запрос о помощи</Typography>
       <Box sx={{
         display: 'flex',
@@ -59,6 +66,8 @@ const CurrentCard = () => {
         <FullInfo card={card}/>
         <DonationSummary card={card}/>
       </Box>
+      </Box> :
+      <ErrorPage />}
     </Box>
 
   )

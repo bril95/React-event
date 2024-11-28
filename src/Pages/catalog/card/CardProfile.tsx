@@ -27,7 +27,7 @@ const CardProfile = () => {
     };
 
     fetchCards();
-  }, [token])
+  }, [])
 
   const indexOfLastCard = page * cardsPerPage;
   const indexOfFirstCard = indexOfLastCard - cardsPerPage;
