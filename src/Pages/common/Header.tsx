@@ -1,19 +1,18 @@
 import { Box, Typography, Button } from "@mui/material";
 import iconHeader from "../../assets/iconHeader.svg";
 import { useSelector } from "react-redux";
-import { selectIsAuthorized, clearAuthState } from '../../slice/authSlice';
+import { selectIsAuthorized } from '../../slice/authSlice';
 import avatar from "../../assets/avatar.svg";
 import { useState } from "react";
 import { useNavigate } from 'react-router-dom';
-import { useDispatch } from 'react-redux'
-import { AppDispatch } from '../../store/store';
 import ProfilePopover from './ProfilePopover';
+import useLogout from "../../hooks/useLogout";
 
 const Header = () => {
   const isAuthorized = useSelector(selectIsAuthorized);
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
   const navigate = useNavigate();
-  const dispatch = useDispatch<AppDispatch>();
+  const handleLogout = useLogout();
 
   const handleClickAvatar = (event: React.MouseEvent<HTMLElement>) => {
     setAnchorEl(event.currentTarget);
@@ -32,9 +31,7 @@ const Header = () => {
   }
 
   const handleClickExit = () => {
-    console.log('Разлогинелся');
-    dispatch(clearAuthState());
-    navigate('/login');
+    handleLogout();
     handleClosePopover();
   }
 

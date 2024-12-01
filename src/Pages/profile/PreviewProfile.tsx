@@ -1,7 +1,10 @@
 import { Box, Button, Typography } from "@mui/material";
-import cardMedia from '../../assets/сardMedia.svg'
+import cardMedia from '../../assets/сardMedia.svg';
+import useLogout from "../../hooks/useLogout";
 
 const PreviewProfile = ({ profile }) => {
+  const handleLogout = useLogout();
+
   return (
     <Box sx={{
       width: '320px',
@@ -20,7 +23,7 @@ const PreviewProfile = ({ profile }) => {
         width: '100%',
         height: '42px',
         mt: '50px',
-      }}>
+      }} onClick={handleLogout}>
         Выйти из аккаунта
       </Button>
     </Box>
