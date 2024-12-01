@@ -16,7 +16,7 @@ const DonationSummary: React.FC<CardInfoProps> = ({ card }) => {
       <CardEndingDate card={card} />
       <CardRequestProgress card={card} />
       <CardContributorsCount card={card} />
-      <HelpButton />
+      <HelpButton id={card.id}/>
     </Box>
   )
 };

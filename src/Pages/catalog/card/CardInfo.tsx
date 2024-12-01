@@ -50,7 +50,7 @@ const CardInfo: React.FC<CardInfoProps> = ({ card }) => {
         <Info card={card}/>
       </CardContent>
       <CardActions>
-        <HelpButton />
+        <HelpButton id={card.id}/>
       </CardActions>
     </Card>
   )
