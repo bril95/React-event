@@ -1,26 +1,29 @@
 import { CardMedia, Card, CardContent, CardActions, Typography, Box, IconButton } from "@mui/material";
-import StarBorderIcon from '@mui/icons-material/StarBorder';
+import StarIcon from '@mui/icons-material/Star';
 import Info from "./Info";
 import CardType from "./CardType";
 import { useNavigate } from "react-router-dom";
 import HelpButton from "./currentCard/HelpButton";
-
+import { useSelector } from "react-redux";
+import { selectFavoritesId } from "../../../slice/favoritesSlice";
+import useFavorites from "../../../hooks/useFavorites";
 
 interface CardInfoProps {
   card: CardType;
 }
 
 const CardInfo: React.FC<CardInfoProps> = ({ card }) => {
-  const navigate = useNavigate()
+  const navigate = useNavigate();
+  const allFavoritesId = useSelector(selectFavoritesId);
+  const clickFavoritesButton = useFavorites();
 
   const handleCardClick = (id: string) => {
-    console.log(id)
     navigate(`card/${id}`, { state: { id } });
   }
 
   const handleFavoriteClick = (e: React.MouseEvent) => {
     e.stopPropagation();
-    console.log('Favorite');
+    clickFavoritesButton(card.id);
   }
 
   return (
@@ -44,7 +47,9 @@ const CardInfo: React.FC<CardInfoProps> = ({ card }) => {
             {card.title}
           </Typography>
           <IconButton disableRipple onClick={handleFavoriteClick}>
-            <StarBorderIcon />
+            <StarIcon
+            color={allFavoritesId.includes(card.id) ? "warning" : 'action'}
+            />
           </IconButton>
         </Box>
         <Info card={card}/>

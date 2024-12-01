@@ -1,15 +1,27 @@
 import { Box, IconButton, Typography } from "@mui/material";
-import StarBorderIcon from '@mui/icons-material/StarBorder';
+import StarIcon from '@mui/icons-material/Star';
+import useFavorites from "../../../../hooks/useFavorites";
+import { selectFavoritesId } from "../../../../slice/favoritesSlice";
+import { useSelector } from "react-redux";
 
-const FavoriteButton = () => {
+interface FavButtonProps {
+  id: string;
+}
+
+const FavoriteButton: React.FC<FavButtonProps> = ({ id }) => {
+  const clickFavoritesButton = useFavorites();
+  const allFavoritesId = useSelector(selectFavoritesId);
+
   const handleFavoriteClick = (e: React.MouseEvent) => {
     e.stopPropagation();
-    console.log('Favorite');
+    clickFavoritesButton(id);
   }
   return (
     <Box>
       <IconButton disableRipple onClick={handleFavoriteClick}>
-      <StarBorderIcon />
+      <StarIcon
+        color={allFavoritesId.includes(id) ? "warning" : 'action'}
+      />
         <Typography>В избранное</Typography>
       </IconButton>
     </Box>

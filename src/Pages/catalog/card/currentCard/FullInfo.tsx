@@ -39,7 +39,7 @@ const FullInfo: React.FC<CardInfoProps> = ({ card }) => {
 
         <CardContacts card={card} />
       </Box>
-      <FavoriteButton />
+      <FavoriteButton id={card.id}/>
     </Box>
   )
 };
