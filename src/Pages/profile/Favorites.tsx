@@ -1,8 +1,20 @@
-import { Typography } from "@mui/material";
+import { Box, Typography } from "@mui/material";
+import Profile from "../../props/InfoProfileProps";
+import NotFoundPage from "../common/NotFoundPage";
 
-const Favorites = () => {
+type InfoProfileProps = {
+  profile: Profile;
+};
+
+const Favorites: React.FC<InfoProfileProps> = ({ profile }) => {
 return (
-  <Typography>Вкладка с избранным</Typography>
+    <Box>
+      {profile.favouriteRequests.length !== 0 ? (
+        <Typography>Вкладка с избранным</Typography>
+      ) : (
+        <NotFoundPage />
+      )}
+    </Box>
 )
 };
 

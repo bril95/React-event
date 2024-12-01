@@ -1,16 +1,16 @@
 import { Box, Button, Typography } from "@mui/material";
 import cardMedia from '../../assets/сardMedia.svg'
 
-const PreviewProfile = () => {
+const PreviewProfile = ({ profile }) => {
   return (
     <Box sx={{
       width: '320px',
       p: '20px',
     }}>
       <img src={cardMedia} alt='Картинка профиля' style={{ width: '320px', height: '240px' }} />
-      <Typography sx={{mt: '20px', mb: '10px'}}>Ангелина Фомина</Typography>
+      <Typography sx={{mt: '20px', mb: '10px'}}>{profile.name} {profile.lastName}</Typography>
     <Typography>
-      <Typography component='span' fontWeight='bold'>Статус:</Typography> Начинающий
+      <Typography component='span' fontWeight='bold'>Статус:</Typography> {profile.status}
     </Typography>
       <Button sx={{
         borderColor: 'black',

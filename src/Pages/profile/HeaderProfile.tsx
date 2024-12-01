@@ -4,7 +4,7 @@ import InfoProfile from "./InfoProfile";
 import Contacts from "./Contacts";
 import Favorites from "./Favorites";
 
-const HeaderProfile = () => {
+const HeaderProfile= ({ profile }) => {
   const [activeTab, setActiveTab] = useState("info");
 
   const handleClick = (tab: string) => {
@@ -38,11 +38,11 @@ const HeaderProfile = () => {
       {(() => {
         switch (activeTab) {
           case 'info':
-            return <InfoProfile />;
+            return <InfoProfile profile={profile} />;
           case 'contacts':
-            return <Contacts />;
+            return <Contacts profile={profile} />;
           case 'favorites':
-            return <Favorites />;
+            return <Favorites profile={profile} />;
           default:
             return null;
         }
