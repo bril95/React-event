@@ -28,9 +28,9 @@ const CardInfo: React.FC<CardInfoProps> = ({ card }) => {
 
   return (
     <Card onClick={() => handleCardClick(card.id)}
-    sx={{
-      width: '320px',
-    }}>
+      sx={{
+        width: '320px',
+      }}>
       <CardMedia
         component="img"
         alt="Personal help card"

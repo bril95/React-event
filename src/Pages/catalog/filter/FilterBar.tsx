@@ -12,14 +12,18 @@ const FilterBar = () => {
     }}>
       <Typography>Фильтрация</Typography>
       <HelpCheckbox
-        title="Кому мы помогаем"
+        title={
+          {label: "Кому мы помогаем", value: 'requesterType'}
+        }
         labels={[
           { label: "Пенсионеры", value: "person" },
           { label: "Дома престарелых", value: "organization" },
         ]}
       />
       <HelpCheckbox
-          title="Чем мы помогаем"
+          title={
+            {label:"Чем мы помогаем", value: 'helpType'}
+          }
           labels={[
             { label: "Вещи", value: "material" },
             { label: "Финансирование", value: "finance" },

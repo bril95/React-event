@@ -21,7 +21,6 @@ const favoritesSlice = createSlice({
     deleteFavoritesId(state, { payload }: PayloadAction<string>) {
       state.favoritesId = state.favoritesId.filter((el) => el !== payload)
     },
-
   },
 });
 
