@@ -11,8 +11,20 @@ const FilterBar = () => {
       boxSizing: 'border-box',
     }}>
       <Typography>Фильтрация</Typography>
-      <HelpCheckbox title={'Комы мы помогаем'} labels={['Пенсионеры', 'Дома престарелых']} />
-      <HelpCheckbox title={'Чем мы помогаем'} labels={['Вещи', 'Финансирование']} />
+      <HelpCheckbox
+        title="Кому мы помогаем"
+        labels={[
+          { label: "Пенсионеры", value: "person" },
+          { label: "Дома престарелых", value: "organization" },
+        ]}
+      />
+      <HelpCheckbox
+          title="Чем мы помогаем"
+          labels={[
+            { label: "Вещи", value: "material" },
+            { label: "Финансирование", value: "finance" },
+        ]}
+      />
       <Volunteers />
       <HelpDeadline />
       <Button sx={{

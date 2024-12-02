@@ -7,9 +7,27 @@ const Volunteers = () => {
       pl: '42px'
     }}>
       <Typography>Волонтерство</Typography>
-      <HelpCheckbox title={'Специализация'} labels={['Квалифицированная', 'Не требует профессии']} />
-      <HelpCheckbox title={'Формат'} labels={['Онлайн', 'Офлайн']} />
-      <HelpCheckbox title={'Необходимо волонтеров'} labels={['Группа', 'Один']} />
+      <HelpCheckbox
+        title={'Специализация'}
+        labels={[
+          {label: 'Квалифицированная', value: 'professional'},
+          {label: 'Не требует профессии', value: 'common'}
+        ]}
+      />
+      <HelpCheckbox
+        title={'Формат'}
+        labels={[
+          {label: 'Онлайн', value: 'online-true'},
+          {label: 'Офлайн', value: 'online-false'}
+        ]}
+      />
+      <HelpCheckbox
+        title={'Необходимо волонтеров'}
+        labels={[
+          {label: 'Группа', value: 'group'},
+          {label: 'Один', value: 'single'}
+        ]}
+      />
     </Box>
   )};
 
