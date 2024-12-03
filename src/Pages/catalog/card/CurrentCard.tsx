@@ -8,6 +8,8 @@ import CardType from "./CardType";
 import FullInfo from "./currentCard/FullInfo";
 import DonationSummary from "./currentCard/DonationSummary";
 import ErrorPage from "../../common/ErrorPage";
+import { useDispatch } from "react-redux";
+import { setUpdateFavoritesId } from "../../../slice/favoritesSlice";
 
 const initialCard: CardType = {
   id: '',
@@ -32,6 +34,7 @@ const CurrentCard = () => {
   const token = useSelector(selectSetAuthUser);
   const [card, setCard] = useState<CardType>(initialCard);
   const [errorResp, setErrorResp] = useState(false);
+  const dispatch = useDispatch();
   
   useEffect(() => {
     const fetchCard = async () => {
@@ -41,6 +44,12 @@ const CurrentCard = () => {
             Authorization: `Bearer ${token}`,
           },
         });
+        const allFavoritesCards = await axios.get('http://localhost:4040/api/user/favourites', {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        });
+        dispatch(setUpdateFavoritesId(allFavoritesCards.data));
         setErrorResp(false);
         setCard(currentCard.data);
       } catch (error) {

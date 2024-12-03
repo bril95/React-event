@@ -16,6 +16,7 @@ const FavoriteButton: React.FC<FavButtonProps> = ({ id }) => {
     e.stopPropagation();
     clickFavoritesButton(id);
   }
+
   return (
     <Box>
       <IconButton disableRipple onClick={handleFavoriteClick}>

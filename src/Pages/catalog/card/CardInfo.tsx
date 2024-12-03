@@ -48,7 +48,7 @@ const CardInfo: React.FC<CardInfoProps> = ({ card }) => {
           </Typography>
           <IconButton disableRipple onClick={handleFavoriteClick}>
             <StarIcon
-            color={allFavoritesId.includes(card.id) ? "warning" : 'action'}
+              color={allFavoritesId.includes(card.id) ? "warning" : 'action'}
             />
           </IconButton>
         </Box>

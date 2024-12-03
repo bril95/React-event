@@ -25,7 +25,6 @@ const Header = () => {
   const open = Boolean(anchorEl);
 
   const handleClickProfile = () => {
-    console.log('Перешел в Мой профиль');
     navigate('/profile');
     handleClosePopover();
   }

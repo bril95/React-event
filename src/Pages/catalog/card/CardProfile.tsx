@@ -1,18 +1,19 @@
-import { Box, Pagination } from "@mui/material"
+import { Box } from "@mui/material"
 import { useEffect, useState } from "react";
 import HeaderCardProfile from "./HeaderCardProfile";
-import CardInfo from "./CardInfo";
 import axios from "axios";
 import { useSelector } from 'react-redux';
 import { selectSetAuthUser } from "../../../slice/authSlice";
+import { setUpdateFavoritesId } from "../../../slice/favoritesSlice";
 import ErrorPage from "../../common/ErrorPage";
+import RenderCards from "./RenderCards";
+import { useDispatch } from "react-redux";
 
 const CardProfile = () => {
   const token = useSelector(selectSetAuthUser);
   const [cards, setCards] = useState([]);
-  const [page, setPage] = useState(1);
-  const cardsPerPage = 3;
   const [errorResp, setErrorResp] = useState(false);
+  const dispatch = useDispatch();
 
   useEffect(() => {
     const fetchCards = async () => {
@@ -22,7 +23,13 @@ const CardProfile = () => {
             Authorization: `Bearer ${token}`,
           },
         });
-        setCards(allCards.data)
+        const allFavoritesCards = await axios.get('http://localhost:4040/api/user/favourites', {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        });
+        setCards(allCards.data);
+        dispatch(setUpdateFavoritesId(allFavoritesCards.data));
       } catch (error) {
         if (axios.isAxiosError(error) && error.response?.status === 500) {
           setErrorResp(true);
@@ -33,14 +40,6 @@ const CardProfile = () => {
     fetchCards();
   }, [])
 
-  const indexOfLastCard = page * cardsPerPage;
-  const indexOfFirstCard = indexOfLastCard - cardsPerPage;
-  const currentCards = cards.slice(indexOfFirstCard, indexOfLastCard);
-
-  const handleChangePage = (_event: React.ChangeEvent<unknown>, value: number) => {
-    setPage(value);
-  };
-
   return (
     <Box sx={{
       padding: '12px 36px 40px',
@@ -48,17 +47,9 @@ const CardProfile = () => {
       {!errorResp ?
       <Box>
         <HeaderCardProfile />
-        <Box sx={{ display: 'flex', gap: '24px', flexWrap: 'wrap' }}>
-          {currentCards.map((card, index) => (
-            <CardInfo key={index} card={card}/>
-          ))}
-        </Box>
-        <Pagination
-          count={Math.ceil(cards.length / cardsPerPage)}
-          page={page}
-          onChange={handleChangePage}
-          color="primary"
-          sx={{ marginTop: '20px', display: 'flex', justifyContent: 'center' }}
+        <RenderCards
+          cards={cards
+          }
         />
       </Box> :
       <ErrorPage />}

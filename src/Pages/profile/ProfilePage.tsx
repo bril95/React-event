@@ -6,11 +6,14 @@ import axios from "axios";
 import { useSelector } from "react-redux";
 import { selectSetAuthUser } from "../../slice/authSlice";
 import ErrorPage from "../common/ErrorPage";
+import { useDispatch } from "react-redux";
+import { setUpdateFavoritesId } from "../../slice/favoritesSlice";
 
 const ProfilePage = () => {
   const token = useSelector(selectSetAuthUser);
   const [profile, setProfile] = useState({});
   const [errorResp, setErrorResp] = useState(false);
+  const dispatch = useDispatch();
 
   useEffect(() => {
     const fetchProfile = async () => {
@@ -20,11 +23,15 @@ const ProfilePage = () => {
             Authorization: `Bearer ${token}`,
           },
         });
+        const allFavoritesCards = await axios.get('http://localhost:4040/api/user/favourites', {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        });
+        dispatch(setUpdateFavoritesId(allFavoritesCards.data));
         setErrorResp(false);
         setProfile(profile.data);
-        console.log(profile.data)
       } catch (error) {
-        console.log(error)
         if (axios.isAxiosError(error) && error.response?.status === 500) {
           setErrorResp(true);
         }
@@ -36,23 +43,22 @@ const ProfilePage = () => {
 
   return (
     <Box>
-      {!errorResp ?
-        <Box>
-          <Typography>Мой профиль</Typography>
-          <Box sx={{
-          display: 'flex',
-          flexDirection: 'colomn',
-          gap: '20px'
-          }}>
-            <PreviewProfile profile={profile} />
-            <HeaderProfile profile={profile} />
-          </Box>
+      <Typography>Мой профиль</Typography>
+      {!errorResp ? (
+        <Box
+          sx={{
+            display: 'flex',
+            gap: '20px',
+          }}
+        >
+          <PreviewProfile profile={profile} />
+          <HeaderProfile profile={profile} />
         </Box>
-      :
+      ) : (
         <ErrorPage />
-      }
+      )}
     </Box>
-  )
+  );
 }
 
 export default ProfilePage;
