@@ -6,14 +6,18 @@ import { useSelector } from 'react-redux';
 import { selectSetAuthUser } from "../../../slice/authSlice";
 import { setUpdateFavoritesId } from "../../../slice/favoritesSlice";
 import ErrorPage from "../../common/ErrorPage";
-import RenderCards from "./RenderCards";
+import RenderGridCards from "./RenderGridCards";
 import { useDispatch } from "react-redux";
+import { selectToggleButton } from "../../../slice/toggleButtonSlice";
+import RenderAltCards from "./RenderAltCards";
+import Location from "./Location";
 
 const CardProfile = () => {
   const token = useSelector(selectSetAuthUser);
   const [cards, setCards] = useState([]);
   const [errorResp, setErrorResp] = useState(false);
   const dispatch = useDispatch();
+  const toggleViewButton = useSelector(selectToggleButton);
 
   useEffect(() => {
     const fetchCards = async () => {
@@ -46,11 +50,23 @@ const CardProfile = () => {
     }}>
       {!errorResp ?
       <Box>
-        <HeaderCardProfile />
-        <RenderCards
+        <HeaderCardProfile
           cards={cards
+          }/>
+        <Box>
+        {(() => {
+          switch (toggleViewButton) {
+            case 'grid':
+              return <RenderGridCards cards={cards} />;
+            case 'alt':
+              return <RenderAltCards cards={cards} />;
+            case 'location':
+              return <Location cards={cards} />;
+            default:
+              return null;
           }
-        />
+        })()}
+        </Box>
       </Box> :
       <ErrorPage />}
     </Box>

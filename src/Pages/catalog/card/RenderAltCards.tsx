@@ -1,8 +1,9 @@
 import { Box, Pagination } from "@mui/material";
-import CardInfo from "./CardInfo";
+import CardAltView from "./CardAltView";
 import { useState } from "react";
+import CardInfoProps from "../../../interfaces/CardType";
 
-const RenderCards = ({ cards }) => {
+const RenderAltCards: React.FC<CardInfoProps[]> = ({ cards }) => {
   const [page, setPage] = useState(1);
   const cardsPerPage = 3;
 
@@ -16,9 +17,9 @@ const RenderCards = ({ cards }) => {
 
   return (
     <Box>
-      <Box sx={{ display: 'flex', gap: '24px', flexWrap: 'wrap' }}>
+      <Box sx={{ display: 'flex',flexDirection: 'column',gap: '24px', flexWrap: 'wrap' }}>
           {currentCards.map((card, index) => (
-            <CardInfo key={index} card={card}/>
+            <CardAltView key={index} card={card}/>
           ))}
         </Box>
         <Pagination
@@ -30,6 +31,6 @@ const RenderCards = ({ cards }) => {
         />
     </Box>
   )
-};
+}
 
-export default RenderCards;
+export default RenderAltCards

@@ -7,7 +7,7 @@ import CardGoalDescription from "../cardDetails/CardGoalDescription";
 import CardEndingDate from "../cardDetails/CardEndingDate";
 import CardLocation from "../cardDetails/CardLocation";
 import CardContacts from "../cardDetails/CardContacts";
-import { CardInfoProps } from "../Info";
+import CardInfoProps from "../../../../interfaces/CardType";
 import CardVerefiedOrg from "../cardDetails/CardVerefiedOrg";
 import FavoriteButton from "./FavoriteButton";
 

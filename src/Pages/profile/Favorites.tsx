@@ -1,12 +1,12 @@
 import { Box } from "@mui/material";
-import Profile from "../../props/InfoProfileProps";
+import Profile from "../../interfaces/InfoProfileProps";
 import NotFoundPage from "../common/NotFoundPage";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { useSelector } from "react-redux";
 import { selectSetAuthUser } from "../../slice/authSlice";
 import ErrorPage from "../common/ErrorPage";
-import RenderCards from "../catalog/card/RenderCards";
+import RenderGridCards from "../catalog/card/RenderGridCards";
 
 type InfoProfileProps = {
   profile: Profile;
@@ -43,7 +43,7 @@ const Favorites: React.FC<InfoProfileProps> = ({ profile }) => {
       {!errorResp ?
         <Box>
           {allFav.length !== 0 ?
-            <RenderCards
+            <RenderGridCards
               cards={allFavCards}
             />
             :

@@ -1,18 +1,19 @@
-import { CardMedia, Card, CardContent, CardActions, Typography, Box, IconButton } from "@mui/material";
+import { Card, CardContent, CardActions, Typography, Box, IconButton } from "@mui/material";
 import StarIcon from '@mui/icons-material/Star';
-import Info from "./Info";
-import CardType from "./CardType";
+import CardType from "../../../interfaces/CardType";
 import { useNavigate } from "react-router-dom";
 import HelpButton from "./currentCard/HelpButton";
 import { useSelector } from "react-redux";
 import { selectFavoritesId } from "../../../slice/favoritesSlice";
 import useFavorites from "../../../hooks/useFavorites";
+import AltView from "./AltView";
+import CardRequestProgress from "./cardDetails/CardRequestProgress";
 
 interface CardInfoProps {
   card: CardType;
 }
 
-const CardInfo: React.FC<CardInfoProps> = ({ card }) => {
+const CardAltView: React.FC<CardInfoProps> = ({ card }) => {
   const navigate = useNavigate();
   const allFavoritesId = useSelector(selectFavoritesId);
   const clickFavoritesButton = useFavorites();
@@ -29,14 +30,8 @@ const CardInfo: React.FC<CardInfoProps> = ({ card }) => {
   return (
     <Card onClick={() => handleCardClick(card.id)}
       sx={{
-        width: '320px',
+        width: '1008px',
       }}>
-      <CardMedia
-        component="img"
-        alt="Personal help card"
-        height="220px"
-        image="src/assets/personalHelpCard.svg"
-      />
       <CardContent>
         <Box sx={{
           display: 'flex'
@@ -46,19 +41,20 @@ const CardInfo: React.FC<CardInfoProps> = ({ card }) => {
           }}>
             {card.title}
           </Typography>
-          <IconButton disableRipple onClick={handleFavoriteClick}>
+          {/* <IconButton disableRipple onClick={handleFavoriteClick}>
             <StarIcon
               color={allFavoritesId.includes(card.id) ? "warning" : 'action'}
             />
-          </IconButton>
+          </IconButton> */}
         </Box>
-        <Info card={card}/>
-      </CardContent>
-      <CardActions>
+        <CardRequestProgress card={card} />
+        <CardActions>
         <HelpButton id={card.id}/>
-      </CardActions>
+        </CardActions>
+        <AltView card={card}/>
+      </CardContent>
     </Card>
   )
 };
 
-export default CardInfo;
+export default CardAltView;

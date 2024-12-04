@@ -1,6 +1,6 @@
 import { Box, Typography } from "@mui/material";
 import CardGoalDescription from "../cardDetails/CardGoalDescription";
-import { CardInfoProps } from "../Info";
+import CardInfoProps from "../../../../interfaces/CardType";
 import CardEndingDate from "../cardDetails/CardEndingDate";
 import CardRequestProgress from "../cardDetails/CardRequestProgress";
 import CardContributorsCount from "../cardDetails/CardContributorsCount";

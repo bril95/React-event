@@ -1,17 +1,13 @@
 import { Box } from "@mui/material";
-import CardType from "./CardType";
 import CardOrganization from "./cardDetails/CardOrganization";
 import CardLocation from "./cardDetails/CardLocation";
 import CardGoalDescription from "./cardDetails/CardGoalDescription";
 import CardEndingDate from "./cardDetails/CardEndingDate";
 import CardRequestProgress from "./cardDetails/CardRequestProgress";
 import CardContributorsCount from "./cardDetails/CardContributorsCount";
+import CardInfoProps from "../../../interfaces/CardType";
 
-export interface CardInfoProps {
-  card: CardType;
-}
-
-const Info: React.FC<CardInfoProps> = ({ card }) => {
+const GridView: React.FC<CardInfoProps> = ({ card }) => {
   return (
     <Box>
       <CardOrganization card={card} />
@@ -28,4 +24,4 @@ const Info: React.FC<CardInfoProps> = ({ card }) => {
   );
 };
 
-export default Info;
+export default GridView;

@@ -3,7 +3,7 @@ import { RootState } from '../store/store';
 
 type User = {
   token: string | null,
-  isAuthorized: boolean,
+zz
 }
 
 const initialState: User = {

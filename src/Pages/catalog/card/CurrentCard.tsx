@@ -4,30 +4,13 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import { useSelector } from 'react-redux';
 import { selectSetAuthUser } from "../../../slice/authSlice";
-import CardType from "./CardType";
+import CardType from "../../../interfaces/CardType";
 import FullInfo from "./currentCard/FullInfo";
 import DonationSummary from "./currentCard/DonationSummary";
 import ErrorPage from "../../common/ErrorPage";
 import { useDispatch } from "react-redux";
 import { setUpdateFavoritesId } from "../../../slice/favoritesSlice";
-
-const initialCard: CardType = {
-  id: '',
-  title: '',
-  organization: { title: '', isVerified: false },
-  description: '',
-  goalDescription: '',
-  actionsSchedule: [],
-  endingDate: '',
-  location: { district: '', city: '', latitude: 0, longitude: 0 },
-  contacts: { email: '', phone: '', website: '' },
-  requesterType: '',
-  helpType: '',
-  helperRequirements: { helperType: '', isOnline: false, qualification: '' },
-  contributorsCount: 0,
-  requestGoal: 0,
-  requestGoalCurrentValue: 0,
-};
+import { initialCard } from "../../../interfaces/CardType";
 
 const CurrentCard = () => {
   const { id } = useParams();

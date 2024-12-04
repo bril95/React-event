@@ -32,7 +32,7 @@ type Profile = {
   educations: Education[];
   additionalInfo: string;
   contacts: Contacts;
-  favouriteRequests: any[];
+  favouriteRequests: string[];
 };
 
 export default Profile;

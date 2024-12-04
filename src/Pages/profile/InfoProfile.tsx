@@ -1,5 +1,5 @@
 import { Typography, Box } from "@mui/material";
-import Profile from "../../props/InfoProfileProps";
+import Profile from "../../interfaces/InfoProfileProps";
 
 type InfoProfileProps = {
   profile: Profile;

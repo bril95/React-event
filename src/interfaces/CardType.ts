@@ -45,4 +45,28 @@ interface CardType {
   requestGoalCurrentValue: number;
 }
 
-export default CardType;
+interface CardInfoProps {
+  card: CardType;
+}
+
+const initialCard: CardType = {
+  id: '',
+  title: '',
+  organization: { title: '', isVerified: false },
+  description: '',
+  goalDescription: '',
+  actionsSchedule: [],
+  endingDate: '',
+  location: { district: '', city: '', latitude: 0, longitude: 0 },
+  contacts: { email: '', phone: '', website: '' },
+  requesterType: '',
+  helpType: '',
+  helperRequirements: { helperType: '', isOnline: false, qualification: '' },
+  contributorsCount: 0,
+  requestGoal: 0,
+  requestGoalCurrentValue: 0,
+};
+
+export {initialCard}
+
+export default CardInfoProps;

@@ -1,5 +1,5 @@
 import { Box, Typography, } from "@mui/material";
-import { CardInfoProps } from "../Info";
+import CardInfoProps from "../../../../interfaces/CardType";
 
 const CardContributorsCount: React.FC<CardInfoProps> = ({ card }) => {
   return (
