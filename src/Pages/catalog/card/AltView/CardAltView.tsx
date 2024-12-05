@@ -1,7 +1,6 @@
 import { Card, CardActions, Typography, Box, IconButton } from "@mui/material";
 import Grid from '@mui/material/Grid2';
 import StarIcon from '@mui/icons-material/Star';
-import CardType from "../../../../interfaces/CardType";
 import { useNavigate } from "react-router-dom";
 import HelpButton from "../currentCard/HelpButton";
 import { useSelector } from "react-redux";
@@ -10,10 +9,7 @@ import useFavorites from "../../../../hooks/useFavorites";
 import AltView from "./AltView";
 import CardRequestProgress from "../cardDetails/CardRequestProgress";
 import CardContributorsCount from "../cardDetails/CardContributorsCount";
-
-interface CardInfoProps {
-  card: CardType;
-}
+import CardInfoProps from "../../../../interfaces/CardType";
 
 const CardAltView: React.FC<CardInfoProps> = ({ card }) => {
   const navigate = useNavigate();

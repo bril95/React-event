@@ -6,7 +6,7 @@ import axios from "axios";
 import { useSelector } from "react-redux";
 import { selectSetAuthUser } from "../../slice/authSlice";
 import ErrorPage from "../common/ErrorPage";
-import RenderGridCards from "../catalog/card/RenderGridCards";
+import RenderGridCards from "../catalog/card/GridView/RenderGridCards";
 
 type InfoProfileProps = {
   profile: Profile;

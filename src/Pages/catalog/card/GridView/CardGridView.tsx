@@ -2,11 +2,11 @@ import { CardMedia, Card, CardContent, CardActions, Typography, Box, IconButton 
 import StarIcon from '@mui/icons-material/Star';
 import GridView from "./GridView";
 import { useNavigate } from "react-router-dom";
-import HelpButton from "./currentCard/HelpButton";
+import HelpButton from "../currentCard/HelpButton";
 import { useSelector } from "react-redux";
-import { selectFavoritesId } from "../../../slice/favoritesSlice";
-import useFavorites from "../../../hooks/useFavorites";
-import CardInfoProps from "../../../interfaces/CardType";
+import { selectFavoritesId } from "../../../../slice/favoritesSlice";
+import useFavorites from "../../../../hooks/useFavorites";
+import CardInfoProps from "../../../../interfaces/CardType";
 
 const CardGridView: React.FC<CardInfoProps> = ({ card }) => {
   const navigate = useNavigate();

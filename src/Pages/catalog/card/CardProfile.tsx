@@ -6,7 +6,7 @@ import { useSelector } from 'react-redux';
 import { selectSetAuthUser } from "../../../slice/authSlice";
 import { setUpdateFavoritesId } from "../../../slice/favoritesSlice";
 import ErrorPage from "../../common/ErrorPage";
-import RenderGridCards from "./RenderGridCards";
+import RenderGridCards from "./GridView/RenderGridCards";
 import { useDispatch } from "react-redux";
 import { selectToggleButton, setToggleButton } from "../../../slice/toggleButtonSlice";
 import RenderAltCards from "./AltView/RenderAltCards";
