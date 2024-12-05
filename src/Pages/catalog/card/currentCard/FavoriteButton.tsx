@@ -3,12 +3,9 @@ import StarIcon from '@mui/icons-material/Star';
 import useFavorites from "../../../../hooks/useFavorites";
 import { selectFavoritesId } from "../../../../slice/favoritesSlice";
 import { useSelector } from "react-redux";
+import { ButtonProps } from "../../../../interfaces/InfoProfileProps";
 
-interface FavButtonProps {
-  id: string;
-}
-
-const FavoriteButton: React.FC<FavButtonProps> = ({ id }) => {
+const FavoriteButton: React.FC<ButtonProps> = ({ id }) => {
   const clickFavoritesButton = useFavorites();
   const allFavoritesId = useSelector(selectFavoritesId);
 

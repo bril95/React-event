@@ -1,12 +1,9 @@
 import { Box, IconButton, Typography } from "@mui/material";
 import TelegramIcon from '@mui/icons-material/Telegram';
 import WhatsAppIcon from '@mui/icons-material/WhatsApp';
-import Profile from "../../interfaces/InfoProfileProps";
+import {InfoProfileProps} from "../../interfaces/InfoProfileProps";
 import vk from '../../assets/vk.svg'
 
-type InfoProfileProps = {
-  profile: Profile;
-};
 
 const Contacts: React.FC<InfoProfileProps> = ({ profile }) => {
   return (

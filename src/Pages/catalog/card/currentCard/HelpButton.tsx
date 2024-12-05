@@ -1,11 +1,8 @@
 import { Button } from "@mui/material";
 import useSendHelp from "../../../../hooks/useSendHelp";
+import { ButtonProps } from "../../../../interfaces/InfoProfileProps";
 
-interface HelpButtonProps {
-  id: string;
-}
-
-const HelpButton: React.FC<HelpButtonProps> = ({ id }) => {
+const HelpButton: React.FC<ButtonProps> = ({ id }) => {
   const sendHelp = useSendHelp();
 
   const handleHelpClick = (e: React.MouseEvent) => {

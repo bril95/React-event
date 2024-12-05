@@ -1,9 +1,9 @@
 import { Box, Pagination } from "@mui/material";
 import CardGridView from "./CardGridView";
 import { useState } from "react";
-import CardInfoProps from "../../../../interfaces/CardType";
+import { CardsInfoArray } from "../../../../interfaces/CardType";
 
-const RenderGridCards: React.FC<CardInfoProps[]> = ({ cards }) => {
+const RenderGridCards: React.FC<CardsInfoArray> = ({ cards }) => {
   const [page, setPage] = useState(1);
   const cardsPerPage = 3;
 

@@ -27,7 +27,7 @@ interface HelperRequirements {
   qualification: string;
 }
 
-interface CardType {
+export interface CardType {
   id: string;
   title: string;
   organization: Organization;
@@ -45,11 +45,15 @@ interface CardType {
   requestGoalCurrentValue: number;
 }
 
-interface CardInfoProps {
+export default interface CardInfoProps {
   card: CardType;
 }
 
-const initialCard: CardType = {
+export interface CardsInfoArray {
+  cards: CardInfoProps[];
+}
+
+export const initialCard: CardType = {
   id: '',
   title: '',
   organization: { title: '', isVerified: false },
@@ -66,7 +70,3 @@ const initialCard: CardType = {
   requestGoal: 0,
   requestGoalCurrentValue: 0,
 };
-
-export {initialCard}
-
-export default CardInfoProps;

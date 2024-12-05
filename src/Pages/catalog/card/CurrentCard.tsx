@@ -61,7 +61,6 @@ const CurrentCard = () => {
       </Box> :
       <ErrorPage />}
     </Box>
-
   )
 };
 

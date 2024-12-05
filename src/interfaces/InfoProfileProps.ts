@@ -35,4 +35,12 @@ type Profile = {
   favouriteRequests: string[];
 };
 
+export interface ButtonProps {
+  id: string;
+};
+
+export type InfoProfileProps = {
+  profile: Profile;
+};
+
 export default Profile;

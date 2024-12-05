@@ -1,8 +1,8 @@
 import { Box, Typography } from "@mui/material";
 import ToggleViewButton from "../../common/ToggleViewButton";
-import CardInfoProps from "../../../interfaces/CardType";
+import { CardsInfoArray } from "../../../interfaces/CardType";
 
-const HeaderCardProfile: React.FC<CardInfoProps[]> = ({ cards }) => {
+const HeaderCardProfile: React.FC<CardsInfoArray> = ({ cards }) => {
   return (
     <Box>
       <Box sx={{

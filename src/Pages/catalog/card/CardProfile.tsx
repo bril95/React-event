@@ -52,8 +52,7 @@ const CardProfile = () => {
       {!errorResp ?
       <Box>
         <HeaderCardProfile
-          cards={cards
-          }/>
+          cards={cards}/>
         <Box>
         {(() => {
           switch (toggleViewButton) {

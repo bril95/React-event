@@ -1,14 +1,7 @@
 import { Box, Button, Popover, Typography } from "@mui/material";
 import PersonRoundedIcon from '@mui/icons-material/PersonRounded';
 import LogoutRoundedIcon from '@mui/icons-material/LogoutRounded';
-
-interface ProfilePopoverProps {
-  open: boolean;
-  anchorEl: null | HTMLElement;
-  onClose: () => void;
-  onClickProfile: () => void;
-  onClickExit: () => void;
-}
+import { ProfilePopoverProps } from "../../interfaces/PopoverType";
 
 const ProfilePopover: React.FC<ProfilePopoverProps> = ({
   open,

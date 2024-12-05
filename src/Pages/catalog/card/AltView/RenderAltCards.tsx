@@ -1,9 +1,9 @@
 import { Box, Pagination } from "@mui/material";
 import CardAltView from "./CardAltView";
 import { useState } from "react";
-import CardInfoProps from "../../../../interfaces/CardType";
+import { CardsInfoArray } from "../../../../interfaces/CardType";
 
-const RenderAltCards: React.FC<CardInfoProps[]> = ({ cards }) => {
+const RenderAltCards: React.FC<CardsInfoArray> = ({ cards }) => {
   const [page, setPage] = useState(1);
   const cardsPerPage = 3;
 

@@ -10,11 +10,7 @@ import { setAuthUser, setIsAuthorized } from '../../slice/authSlice';
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
-
-interface MyForm {
-  login: string;
-  password: string;
-}
+import MyForm from '../../interfaces/LoginType';
 
 const validationSchema = Yup.object().shape({
   login: Yup.string()

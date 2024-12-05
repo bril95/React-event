@@ -1,16 +1,7 @@
 import { Box, FormControlLabel, FormGroup, Typography, Checkbox } from "@mui/material";
 import { useDispatch } from "react-redux";
 import { setFilterPar, deleteFilterPar } from "../../../slice/filterSlice";
-
-interface HelpCheckboxLabelProps {
-  label: string;
-  value: string | boolean;
-}
-
-interface HelpCheckboxProps {
-  title: HelpCheckboxLabelProps;
-  labels: HelpCheckboxLabelProps[];
-}
+import HelpCheckboxProps from "../../../interfaces/FilterType";
 
 const HelpCheckbox: React.FC<HelpCheckboxProps> = ({ title, labels }) => {
   const dispatch = useDispatch();

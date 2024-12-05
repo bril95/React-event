@@ -1,9 +1,5 @@
 import { Typography, Box } from "@mui/material";
-import Profile from "../../interfaces/InfoProfileProps";
-
-type InfoProfileProps = {
-  profile: Profile;
-};
+import {InfoProfileProps} from "../../interfaces/InfoProfileProps";
 
 const InfoProfile: React.FC<InfoProfileProps> = ({ profile }) => {
   return (
