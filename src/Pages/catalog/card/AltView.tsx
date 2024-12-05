@@ -1,25 +1,25 @@
-import { Box } from "@mui/material";
 import CardOrganization from "./cardDetails/CardOrganization";
 import CardLocation from "./cardDetails/CardLocation";
 import CardGoalDescription from "./cardDetails/CardGoalDescription";
 import CardEndingDate from "./cardDetails/CardEndingDate";
-import CardContributorsCount from "./cardDetails/CardContributorsCount";
 import CardInfoProps from "../../../interfaces/CardType";
+import Grid from '@mui/material/Grid2';
 
 
 const AltView: React.FC<CardInfoProps> = ({ card }) => {
   return (
-    <Box>
-      <CardOrganization card={card} />
+    <Grid container spacing={'30px'}>
+      <Grid size={6}>
+        <CardOrganization card={card} />
 
-      <CardLocation card={card} />
+        <CardEndingDate card={card} />
+      </Grid>
+      <Grid size={6}>
+        <CardLocation card={card} />
 
-      <CardGoalDescription card={card} />
-
-      <CardEndingDate card={card} />
-
-      <CardContributorsCount card={card} />
-    </Box>
+        <CardGoalDescription card={card} />
+      </Grid>
+    </Grid>
   );
 };
 
