@@ -8,7 +8,7 @@ import { setUpdateFavoritesId } from "../../../slice/favoritesSlice";
 import ErrorPage from "../../common/ErrorPage";
 import RenderGridCards from "./RenderGridCards";
 import { useDispatch } from "react-redux";
-import { selectToggleButton } from "../../../slice/toggleButtonSlice";
+import { selectToggleButton, setToggleButton } from "../../../slice/toggleButtonSlice";
 import RenderAltCards from "./RenderAltCards";
 import Location from "./Location";
 
@@ -33,6 +33,7 @@ const CardProfile = () => {
           },
         });
         setCards(allCards.data);
+        dispatch(setToggleButton('grid'))
         dispatch(setUpdateFavoritesId(allFavoritesCards.data));
       } catch (error) {
         if (axios.isAxiosError(error) && error.response?.status === 500) {
