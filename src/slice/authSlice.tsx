@@ -1,10 +1,6 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { RootState } from '../store/store';
-
-type User = {
-  token: string | null,
-zz
-}
+import { User } from '../interfaces/LoginType';
 
 const initialState: User = {
   token: sessionStorage.getItem('token'),
