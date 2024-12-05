@@ -1,7 +1,7 @@
 import { Box, Pagination } from "@mui/material";
 import CardAltView from "./CardAltView";
 import { useState } from "react";
-import CardInfoProps from "../../../interfaces/CardType";
+import CardInfoProps from "../../../../interfaces/CardType";
 
 const RenderAltCards: React.FC<CardInfoProps[]> = ({ cards }) => {
   const [page, setPage] = useState(1);

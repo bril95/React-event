@@ -9,7 +9,7 @@ import ErrorPage from "../../common/ErrorPage";
 import RenderGridCards from "./RenderGridCards";
 import { useDispatch } from "react-redux";
 import { selectToggleButton, setToggleButton } from "../../../slice/toggleButtonSlice";
-import RenderAltCards from "./RenderAltCards";
+import RenderAltCards from "./AltView/RenderAltCards";
 import Location from "./Location";
 
 const CardProfile = () => {

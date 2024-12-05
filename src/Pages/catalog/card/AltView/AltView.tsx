@@ -1,8 +1,8 @@
-import CardOrganization from "./cardDetails/CardOrganization";
-import CardLocation from "./cardDetails/CardLocation";
-import CardGoalDescription from "./cardDetails/CardGoalDescription";
-import CardEndingDate from "./cardDetails/CardEndingDate";
-import CardInfoProps from "../../../interfaces/CardType";
+import CardOrganization from "../cardDetails/CardOrganization";
+import CardLocation from "../cardDetails/CardLocation";
+import CardGoalDescription from "../cardDetails/CardGoalDescription";
+import CardEndingDate from "../cardDetails/CardEndingDate";
+import CardInfoProps from "../../../../interfaces/CardType";
 import Grid from '@mui/material/Grid2';
 
 
