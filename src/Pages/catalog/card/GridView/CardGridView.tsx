@@ -6,7 +6,8 @@ import HelpButton from "../currentCard/HelpButton";
 import { useSelector } from "react-redux";
 import { selectFavoritesId } from "../../../../slice/favoritesSlice";
 import useFavorites from "../../../../hooks/useFavorites";
-import CardInfoProps from "../../../../interfaces/CardType";
+import CardInfoProps, { CardType } from "../../../../interfaces/CardType";
+
 
 const CardGridView: React.FC<CardInfoProps> = ({ card }) => {
   const navigate = useNavigate();
@@ -22,6 +23,15 @@ const CardGridView: React.FC<CardInfoProps> = ({ card }) => {
     clickFavoritesButton(card.id);
   }
 
+  const getImageUrl = (card: CardType): string=> {
+    if (card.requesterType === 'person') {
+      return card.helpType === 'finance'
+        ? 'src/assets/financePersonHelpCard.svg'
+        : 'src/assets/materialPersonHelpCard.svg';
+    }
+    return 'src/assets/organizationHelpCard.svg';
+  };
+
   return (
     <Card onClick={() => handleCardClick(card.id)}
       sx={{
@@ -31,7 +41,11 @@ const CardGridView: React.FC<CardInfoProps> = ({ card }) => {
         component="img"
         alt="Personal help card"
         height="220px"
-        image="src/assets/personalHelpCard.svg"
+        image={getImageUrl(card)}
+        sx={{
+          objectFit: 'contain',
+          width: '100%',
+        }}
       />
       <CardContent>
         <Box sx={{
