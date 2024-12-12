@@ -17,29 +17,27 @@ const ToggleViewButton = () => {
 
   return (
     <Box>
-      <Box>
-        <IconButton onClick={() => clickActiveButton('grid')}
-          sx={{
-            backgroundColor: activeButton === 'grid' ? 'grey' : 'white',
-          }}
-        >
-          <GridOnIcon />
-        </IconButton>
-        <IconButton onClick={() => clickActiveButton('alt')}
-          sx={{
-            backgroundColor: activeButton === 'alt' ? 'grey' : 'white',
-          }}
-        >
-          <ListAltIcon />
-        </IconButton>
-        <IconButton onClick={() => clickActiveButton('location')}
-          sx={{
-            backgroundColor: activeButton === 'location' ? 'grey' : 'white',
-          }}
-        >
-          <LocationOnIcon />
-        </IconButton>
-      </Box>
+      <IconButton onClick={() => clickActiveButton('grid')}
+        sx={{
+          backgroundColor: activeButton === 'grid' ? 'grey' : 'white',
+        }}
+      >
+        <GridOnIcon />
+      </IconButton>
+      <IconButton onClick={() => clickActiveButton('alt')}
+        sx={{
+          backgroundColor: activeButton === 'alt' ? 'grey' : 'white',
+        }}
+      >
+        <ListAltIcon />
+      </IconButton>
+      <IconButton onClick={() => clickActiveButton('location')}
+        sx={{
+          backgroundColor: activeButton === 'location' ? 'grey' : 'white',
+        }}
+      >
+        <LocationOnIcon />
+      </IconButton>
     </Box>
   )
 };

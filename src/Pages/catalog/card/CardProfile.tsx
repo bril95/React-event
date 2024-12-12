@@ -45,6 +45,13 @@ const CardProfile = () => {
     fetchCards();
   }, [])
 
+  const filterParam = (allCards) => {
+    if()
+    return allCards.filter((card) => card.isChecked);
+  };
+
+  const filteredCards = filterParam(cards);
+
   return (
     <Box sx={{
       padding: '12px 36px 40px',
@@ -52,14 +59,14 @@ const CardProfile = () => {
       {!errorResp ?
       <Box>
         <HeaderCardProfile
-          cards={cards}/>
+          cards={filteredCards}/>
         <Box>
         {(() => {
           switch (toggleViewButton) {
             case 'grid':
-              return <RenderGridCards cards={cards} />;
+              return <RenderGridCards cards={filteredCards} />;
             case 'alt':
-              return <RenderAltCards cards={cards} />;
+              return <RenderAltCards cards={filteredCards} />;
             case 'location':
               return <Location cards={cards} />;
             default:

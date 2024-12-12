@@ -1,9 +1,17 @@
 import { Box, Button, Typography } from "@mui/material"
 import Volunteers from "./Volunteers";
 import HelpDeadline from "./HelpDeadline";
-import HelpCheckbox from "./HelpCheckbox";
+import { useDispatch } from "react-redux";
+import MainFilter from "./MainFilter";
+import { resetFilters } from "../../../slice/filterSlice";
 
 const FilterBar = () => {
+const dispach = useDispatch();
+
+const resetForm = () => {
+  dispach(resetFilters());
+}
+
   return (
     <Box sx={{
       padding: '20px',
@@ -11,24 +19,7 @@ const FilterBar = () => {
       boxSizing: 'border-box',
     }}>
       <Typography>Фильтрация</Typography>
-      <HelpCheckbox
-        title={
-          {label: "Кому мы помогаем", value: 'requesterType'}
-        }
-        labels={[
-          { label: "Пенсионеры", value: "person" },
-          { label: "Дома престарелых", value: "organization" },
-        ]}
-      />
-      <HelpCheckbox
-          title={
-            {label:"Чем мы помогаем", value: 'helpType'}
-          }
-          labels={[
-            { label: "Вещи", value: "material" },
-            { label: "Финансирование", value: "finance" },
-        ]}
-      />
+      <MainFilter />
       <Volunteers />
       <HelpDeadline />
       <Button sx={{
@@ -40,6 +31,7 @@ const FilterBar = () => {
             color: '#000',
             borderColor: '#000',
           }}
+          onClick={resetForm}
           variant="outlined"
           type="submit">
         Сбросить

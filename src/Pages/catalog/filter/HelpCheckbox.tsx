@@ -1,21 +1,34 @@
 import { Box, FormControlLabel, FormGroup, Typography, Checkbox } from "@mui/material";
-import { useDispatch } from "react-redux";
-import { setFilterPar, deleteFilterPar } from "../../../slice/filterSlice";
+import { useDispatch, useSelector } from "react-redux";
+import { selectFilter, toggleCheckbox } from "../../../slice/filterSlice";
 import HelpCheckboxProps from "../../../interfaces/FilterType";
+
+const helpType = ['helperType', 'isOnline', 'qualification'];
 
 const HelpCheckbox: React.FC<HelpCheckboxProps> = ({ title, labels }) => {
   const dispatch = useDispatch();
+  const currentIsChecked = useSelector(selectFilter);
 
-  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const labelValue = event.target.value;
-    const titleValue = title.value;
-    const dataValue = { labelValue, titleValue};
+  // const selectFilterByCategoryKeyAndSubcategory = (category: string, key: string, subcategory?: string) => {
+  //   return currentIsChecked.find(
+  //     (filter) => 
+  //       filter.category === category &&
+  //       filter.key === key &&
+  //       (subcategory ? filter.subcategory === subcategory : true)
+  //   );
+  // }
 
-    if(event.target.checked) {
-      dispatch(setFilterPar(dataValue));
-    } else {
-      dispatch(deleteFilterPar(dataValue));
-    }
+  const handleChange = (event: React.ChangeEvent<HTMLInputElement>, category: string) => {
+    const key = event.target.value;
+    const checked = event.target.checked;
+    const subcategory = helpType.includes(category) ? 'helperRequirements' : '';
+
+    dispatch(toggleCheckbox({
+      category,
+      subcategory,
+      key,
+      isChecked: checked,
+    }));
   };
 
   return (
@@ -26,11 +39,14 @@ const HelpCheckbox: React.FC<HelpCheckboxProps> = ({ title, labels }) => {
           <FormControlLabel
             key={index}
             control={
-            <Checkbox
-              value={el.value}
-              onChange={handleChange}
-            />}
-            label={el.label} />
+              <Checkbox
+                value={el.value}
+                // checked={isChecked}
+                onChange={(e) => handleChange(e, title.value)}
+              />
+            }
+            label={el.label}
+          />
         ))}
       </FormGroup>
     </Box>
