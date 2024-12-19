@@ -11,6 +11,7 @@ import { useDispatch } from "react-redux";
 import { selectToggleButton, setToggleButton } from "../../../slice/toggleButtonSlice";
 import RenderAltCards from "./AltView/RenderAltCards";
 import Location from "./Location";
+import { selectFilter } from "../../../slice/filterSlice";
 
 const CardProfile = () => {
   const token = useSelector(selectSetAuthUser);
@@ -18,6 +19,7 @@ const CardProfile = () => {
   const [errorResp, setErrorResp] = useState(false);
   const dispatch = useDispatch();
   const toggleViewButton = useSelector(selectToggleButton);
+  const allFilter = useSelector(selectFilter);
 
   useEffect(() => {
     const fetchCards = async () => {
@@ -46,8 +48,26 @@ const CardProfile = () => {
   }, [])
 
   const filterParam = (allCards) => {
-    if()
-    return allCards.filter((card) => card.isChecked);
+    const activeFilters = allFilter.filter((el) => el.isChecked);
+    if (allCards.length && activeFilters.length) {
+      return allCards.filter((card) => {
+        return activeFilters.every((filter) => {
+          if (filter.subcategory) {
+            const subcategoryValue = card[filter.category][filter.subcategory];
+            if (String(subcategoryValue) !== filter.key) {
+              return false;
+            }
+          } else {
+            const categoryValue = card[filter.category];
+            if (categoryValue !== filter.key) {
+              return false;
+            }
+          }
+          return true; 
+        });
+      });
+    }
+    return allCards;
   };
 
   const filteredCards = filterParam(cards);
