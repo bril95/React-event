@@ -1,13 +1,14 @@
 import { Box, Typography } from "@mui/material";
 import HelpCheckbox from "./HelpCheckbox";
 
-const Volunteers = () => {
+const Volunteers = ({ reset }) => {
   return (
     <Box sx={{
       pl: '42px'
     }}>
       <Typography>Волонтерство</Typography>
       <HelpCheckbox
+        reset={reset}
         title={
           {label: 'Специализация', value: 'qualification'}
         }
@@ -17,6 +18,7 @@ const Volunteers = () => {
         ]}
       />
       <HelpCheckbox
+        reset={reset}
         title={
           {label: 'Формат', value: 'isOnline'}
         }
@@ -26,6 +28,7 @@ const Volunteers = () => {
         ]}
       />
       <HelpCheckbox
+        reset={reset}
         title={
           {label: 'Необходимо волонтеров', value: 'helperType'}
         }

@@ -6,4 +6,5 @@ interface HelpCheckboxLabelProps {
 export default interface HelpCheckboxProps {
   title: HelpCheckboxLabelProps;
   labels: HelpCheckboxLabelProps[];
+  reset: boolean;
 }

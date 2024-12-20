@@ -4,13 +4,22 @@ import HelpDeadline from "./HelpDeadline";
 import { useDispatch } from "react-redux";
 import MainFilter from "./MainFilter";
 import { resetFilters } from "../../../slice/filterSlice";
+import { useEffect, useState } from "react";
 
 const FilterBar = () => {
 const dispach = useDispatch();
+const [reset, setReset] = useState(false);
 
 const resetForm = () => {
   dispach(resetFilters());
+  setReset(true)
 }
+
+useEffect(() => {
+  if (reset) {
+    setReset(false);
+  }
+}, [reset]);
 
   return (
     <Box sx={{
@@ -19,9 +28,9 @@ const resetForm = () => {
       boxSizing: 'border-box',
     }}>
       <Typography>Фильтрация</Typography>
-      <MainFilter />
-      <Volunteers />
-      <HelpDeadline />
+      <MainFilter reset={reset} />
+      <Volunteers reset={reset} />
+      <HelpDeadline reset={reset} />
       <Button sx={{
             width: '100%',
             boxSizing: 'border-box',

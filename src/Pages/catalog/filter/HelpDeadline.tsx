@@ -2,7 +2,7 @@ import { Box, Typography } from "@mui/material";
 import { LocalizationProvider, DatePicker } from '@mui/x-date-pickers';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 
-const HelpDeadline = () => {
+const HelpDeadline = ({ reset }) => {
   return (
     <Box>
       <Typography sx={{

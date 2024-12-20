@@ -1,10 +1,11 @@
 import { Box } from "@mui/material";
 import HelpCheckbox from "./HelpCheckbox";
 
-const MainFilter = () => {
+const MainFilter = ({ reset }) => {
   return (
     <Box>
       <HelpCheckbox
+        reset={reset}
         title={
           {label: "Кому мы помогаем", value: 'requesterType'}
         }
@@ -14,12 +15,13 @@ const MainFilter = () => {
         ]}
       />
       <HelpCheckbox
-          title={
-            {label:"Чем мы помогаем", value: 'helpType'}
-          }
-          labels={[
-            { label: "Вещи", value: "material" },
-            { label: "Финансирование", value: "finance" },
+        reset={reset}
+        title={
+          {label:"Чем мы помогаем", value: 'helpType'}
+        }
+        labels={[
+          { label: "Вещи", value: "material" },
+          { label: "Финансирование", value: "finance" },
         ]}
       />
     </Box>

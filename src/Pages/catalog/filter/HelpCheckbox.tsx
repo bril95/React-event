@@ -2,11 +2,13 @@ import { Box, FormControlLabel, FormGroup, Typography, Checkbox } from "@mui/mat
 import { useDispatch } from "react-redux";
 import { toggleCheckbox } from "../../../slice/filterSlice";
 import HelpCheckboxProps from "../../../interfaces/FilterType";
+// import { useState } from "react";
 
 const helpType = ['helperType', 'isOnline', 'qualification'];
 
-const HelpCheckbox: React.FC<HelpCheckboxProps> = ({ title, labels }) => {
+const HelpCheckbox: React.FC<HelpCheckboxProps> = ({ title, labels, reset }) => {
   const dispatch = useDispatch();
+  // const [checkedState, setCheckedState] = useState(false)
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>, category: string) => {
     const key = event.target.value;
