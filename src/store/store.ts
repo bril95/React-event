@@ -3,6 +3,7 @@ import authReducer from '../slice/authSlice';
 import favoriteReducer from '../slice/favoritesSlice';
 import filterReducer from '../slice/filterSlice';
 import toggleButtonReducer from '../slice/toggleButtonSlice';
+import deadlineReducer from '../slice/deadlineDataSlice'
 
 const store = configureStore({
   reducer: {
@@ -10,6 +11,7 @@ const store = configureStore({
     favorites: favoriteReducer,
     filter: filterReducer,
     toggleButton: toggleButtonReducer,
+    deadlineData: deadlineReducer,
   },
 });
 

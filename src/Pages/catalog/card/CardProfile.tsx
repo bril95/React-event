@@ -12,6 +12,7 @@ import { selectToggleButton, setToggleButton } from "../../../slice/toggleButton
 import RenderAltCards from "./AltView/RenderAltCards";
 import Location from "./Location";
 import { selectFilter } from "../../../slice/filterSlice";
+import { selectDeadlineData } from "../../../slice/deadlineDataSlice";
 
 const CardProfile = () => {
   const token = useSelector(selectSetAuthUser);
@@ -20,6 +21,7 @@ const CardProfile = () => {
   const dispatch = useDispatch();
   const toggleViewButton = useSelector(selectToggleButton);
   const allFilter = useSelector(selectFilter);
+  const deadline = useSelector(selectDeadlineData);
 
   useEffect(() => {
     const fetchCards = async () => {
@@ -49,8 +51,15 @@ const CardProfile = () => {
 
   const filterParam = (allCards) => {
     const activeFilters = allFilter.filter((el) => el.isChecked);
-    if (allCards.length && activeFilters.length) {
+    if (allCards.length && activeFilters.length || deadline) {
       return allCards.filter((card) => {
+        if (deadline !== null) {
+          const endingDate = new Date(card.endingDate);
+          const deadlineDate = new Date(deadline);
+          if (endingDate > deadlineDate) {
+            return false;
+          }
+        }
         return activeFilters.every((filter) => {
           if (filter.subcategory) {
             const subcategoryValue = card[filter.category][filter.subcategory];
@@ -63,7 +72,7 @@ const CardProfile = () => {
               return false;
             }
           }
-          return true; 
+          return true;
         });
       });
     }

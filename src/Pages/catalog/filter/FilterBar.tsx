@@ -4,6 +4,7 @@ import HelpDeadline from "./HelpDeadline";
 import { useDispatch } from "react-redux";
 import MainFilter from "./MainFilter";
 import { resetFilters } from "../../../slice/filterSlice";
+import { resetDeadline } from "../../../slice/deadlineDataSlice";
 import { useEffect, useState } from "react";
 
 const FilterBar = () => {
@@ -12,6 +13,7 @@ const [reset, setReset] = useState(false);
 
 const resetForm = () => {
   dispach(resetFilters());
+  dispach(resetDeadline());
   setReset(true)
 }
 
