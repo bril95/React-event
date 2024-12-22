@@ -2,7 +2,7 @@ import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { RootState } from '../store/store';
 
 type DeadlineData = {
-  deadlineData: Date | null,
+  deadlineData: string | null,
 }
 
 const initialState: DeadlineData = {
@@ -13,7 +13,7 @@ const deadlineData = createSlice({
   name: 'deadlineData',
   initialState,
   reducers: {
-    setDeadlineData(state, { payload }: PayloadAction<Date>) {
+    setDeadlineData(state, { payload }: PayloadAction<string>) {
       state.deadlineData = payload
     },
     resetDeadline: () => initialState,

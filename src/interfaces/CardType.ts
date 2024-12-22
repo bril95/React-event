@@ -50,7 +50,7 @@ export default interface CardInfoProps {
 }
 
 export interface CardsInfoArray {
-  cards: CardInfoProps[];
+  cards: CardType[];
 }
 
 export const initialCard: CardType = {

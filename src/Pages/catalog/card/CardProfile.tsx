@@ -13,6 +13,7 @@ import RenderAltCards from "./AltView/RenderAltCards";
 import Location from "./Location";
 import { selectFilter } from "../../../slice/filterSlice";
 import { selectDeadlineData } from "../../../slice/deadlineDataSlice";
+import { CardType } from "../../../interfaces/CardType";
 
 const CardProfile = () => {
   const token = useSelector(selectSetAuthUser);
@@ -49,7 +50,8 @@ const CardProfile = () => {
     fetchCards();
   }, [])
 
-  const filterParam = (allCards) => {
+  // Вынести в отдельный файл
+  const filterParam = (allCards: CardType[]) => {
     const activeFilters = allFilter.filter((el) => el.isChecked);
     if (allCards.length && activeFilters.length || deadline) {
       return allCards.filter((card) => {

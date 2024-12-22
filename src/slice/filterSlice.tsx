@@ -1,14 +1,6 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { RootState } from '../store/store';
-
-interface Filter {
-  category: string;
-  subcategory?: string;
-  key: string;
-  isChecked: boolean;
-}
-
-type FiltersState = Filter[];
+import { FiltersState } from '../interfaces/FilterType';
 
 const initialState: FiltersState = [
   { category: 'requesterType', key: 'person', isChecked: false },

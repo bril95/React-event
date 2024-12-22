@@ -8,3 +8,12 @@ export default interface HelpCheckboxProps {
   labels: HelpCheckboxLabelProps[];
   reset: boolean;
 }
+
+export interface Filter {
+  category: string;
+  subcategory?: string;
+  key: string;
+  isChecked: boolean;
+}
+
+export type FiltersState = Filter[];
