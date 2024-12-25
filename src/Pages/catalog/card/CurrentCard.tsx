@@ -1,9 +1,6 @@
 import { Box,Typography } from "@mui/material";
 import { useParams } from 'react-router-dom';
 import { useEffect, useState } from "react";
-import axios from "axios";
-import { useSelector } from 'react-redux';
-import { selectSetAuthUser } from "../../../slice/authSlice";
 import CardType from "../../../interfaces/CardType";
 import FullInfo from "./currentCard/FullInfo";
 import DonationSummary from "./currentCard/DonationSummary";
@@ -11,40 +8,36 @@ import ErrorPage from "../../common/ErrorPage";
 import { useDispatch } from "react-redux";
 import { setUpdateFavoritesId } from "../../../slice/favoritesSlice";
 import { initialCard } from "../../../interfaces/CardType";
+import { useGetFavouritesQuery, useGetRequestDetailsQuery } from "../../../api/api";
 
 const CurrentCard = () => {
   const { id } = useParams();
-  const token = useSelector(selectSetAuthUser);
   const [card, setCard] = useState<CardType>(initialCard);
   const [errorResp, setErrorResp] = useState(false);
   const dispatch = useDispatch();
+  const { data: getFavouritesCards, isLoading: isLoadingGetFavourites, refetch, error} = useGetFavouritesQuery();
+  const { data: getCurrentCard, isLoading: isLoadingRequestDetails, error: errorRequestDetails } = useGetRequestDetailsQuery(id);
+
+  //Разобраться как быть с избранным в каждой карточке если она добавлена
+  useEffect(() => {
+    if (error) {
+      refetch();
+    }
+    if (!isLoadingGetFavourites && getFavouritesCards) {
+      dispatch(setUpdateFavoritesId(getFavouritesCards));
+      setErrorResp(false);
+    }
+  }, [isLoadingGetFavourites, getFavouritesCards, dispatch, error, refetch]);
   
   useEffect(() => {
-    const fetchCard = async () => {
-      try {
-        const currentCard = await axios.get(`http://localhost:4040/api/request/${id}`, {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        });
-        const allFavoritesCards = await axios.get('http://localhost:4040/api/user/favourites', {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        });
-        dispatch(setUpdateFavoritesId(allFavoritesCards.data));
-        setErrorResp(false);
-        setCard(currentCard.data);
-      } catch (error) {
-        console.log(error)
-        if (axios.isAxiosError(error) && error.response?.status === 500) {
-          setErrorResp(true);
-        }
-      }
-    };
-
-    fetchCard();
-  }, [])
+    if (!isLoadingRequestDetails && getCurrentCard) {
+      setCard(getCurrentCard);
+      setErrorResp(false);
+    } else if (errorRequestDetails) {
+      console.error(errorRequestDetails);
+      setErrorResp(true);
+    }
+  }, [isLoadingRequestDetails, getCurrentCard, errorRequestDetails]);
 
   return (
     <Box>

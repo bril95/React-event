@@ -1,5 +1,5 @@
 import { useDispatch } from 'react-redux';
-import { AppDispatch } from '../store/store';
+import { AppDispatch } from '../api/store';
 import { useNavigate } from 'react-router-dom';
 import { clearAuthState } from '../slice/authSlice';
 

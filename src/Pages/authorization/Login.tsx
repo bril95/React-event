@@ -5,7 +5,7 @@ import * as Yup from 'yup';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { SubmitHandler, useForm, Controller } from 'react-hook-form';
 import axios from 'axios';
-import { AppDispatch } from '../../store/store';
+import { AppDispatch } from '../../api/store';
 import { setAuthUser, setIsAuthorized } from '../../slice/authSlice';
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';

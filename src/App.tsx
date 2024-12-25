@@ -8,7 +8,7 @@ import { ToastContainer } from 'react-toastify';
 import { useSelector } from 'react-redux';
 import { selectIsAuthorized } from './slice/authSlice';
 import { Provider } from 'react-redux';
-import store from './store/store';
+import store from './api/store';
 import Layout from './Pages/Layout';
 import AuthPage from './Pages/authorization/AuthPage';
 import ProfilePage from './Pages/profile/ProfilePage';
