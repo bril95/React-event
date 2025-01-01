@@ -1,10 +1,14 @@
 import { Box, Typography, FormControl, Input, InputAdornment } from "@mui/material"
 import SearchIcon from '@mui/icons-material/Search';
+import { useDispatch } from "react-redux";
+import { setSearchBar } from "../../../slice/searchBarSlice";
 
 const SearchBar = () => {
+  const dispatch = useDispatch();
 
-  const handleInput = (e) => {
-    console.log(e.target.value);
+  const handleInput = (e: React.ChangeEvent<HTMLInputElement>,) => {
+    const curretInput = e.target.value;
+    dispatch(setSearchBar(curretInput));
   };
 
   return (

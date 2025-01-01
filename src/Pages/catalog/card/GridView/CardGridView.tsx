@@ -7,6 +7,7 @@ import { useSelector } from "react-redux";
 import { selectFavoritesId } from "../../../../slice/favoritesSlice";
 import useFavorites from "../../../../hooks/useFavorites";
 import CardInfoProps, { CardType } from "../../../../interfaces/CardType";
+import normalizeTitle from "../../../common/normalizeTitle";
 
 
 const CardGridView: React.FC<CardInfoProps> = ({ card }) => {
@@ -54,7 +55,7 @@ const CardGridView: React.FC<CardInfoProps> = ({ card }) => {
           <Typography variant="h5" sx={{
             height: '128px'
           }}>
-            {card.title}
+            {normalizeTitle(card.title)}
           </Typography>
           <IconButton disableRipple onClick={handleFavoriteClick}>
             <StarIcon
