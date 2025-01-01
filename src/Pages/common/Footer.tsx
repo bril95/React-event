@@ -24,7 +24,7 @@ const Footer = () => {
         Об ивенте
       </Link>
       <Link
-        href="https://github.com/Pinup2/React-Event-Oct-24"
+        href="https://github.com/bril95/React-event"
         sx={{
           textDecoration: 'none',
           color: 'black',
