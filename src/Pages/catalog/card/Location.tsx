@@ -5,8 +5,10 @@ import { useNavigate } from "react-router-dom";
 const Location: React.FC<CardsInfoArray> = ({ cards }) => {
   const navigate = useNavigate();
 
+  const moscowCenter = [55.751574, 37.573856];
+
   const defaultState = {
-    center: [55.751574, 37.573856],
+    center: moscowCenter,
     zoom: 5,
   };
 
@@ -24,9 +26,9 @@ const Location: React.FC<CardsInfoArray> = ({ cards }) => {
           <Placemark
             key={index}
             geometry={[el.location.latitude, el.location.longitude]}
-            properties={{
-              hintContent: `${el.title}`
-            }}
+            // properties={{
+            //   hintContent: `${el.title}`
+            // }} не работает
             onClick={() => handleCardClick(el.id)}
           />)}
       </Map>

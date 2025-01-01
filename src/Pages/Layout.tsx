@@ -8,11 +8,11 @@ const Layout = () => (
     sx={{
       display: 'flex',
       flexDirection: 'column',
-      width: '1920px',
+      width: '1810px',
       boxSizing: 'border-box',
       // minHeight: '100vh',
-      pl: '210px',
-      pr: '210px',
+      pl: '20px',
+      pr: '20px',
     }}
   >
     <Header />
