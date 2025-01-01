@@ -1,7 +1,12 @@
-import { Box, Typography, FormControl, Input, InputAdornment, IconButton } from "@mui/material"
+import { Box, Typography, FormControl, Input, InputAdornment } from "@mui/material"
 import SearchIcon from '@mui/icons-material/Search';
 
 const SearchBar = () => {
+
+  const handleInput = (e) => {
+    console.log(e.target.value);
+  };
+
   return (
     <Box sx={{
       padding: '20px 36px 40px',
@@ -12,12 +17,11 @@ const SearchBar = () => {
       }}>
           <Input
             id="taskOrOrganizationName"
+            onInput={handleInput}
             placeholder="Введите название задачи или организации"
             startAdornment={
             <InputAdornment position="start">
-              <IconButton>
-                <SearchIcon />
-              </IconButton>
+              <SearchIcon />
             </InputAdornment>
             }
           />

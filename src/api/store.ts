@@ -4,6 +4,7 @@ import favoriteReducer from '../slice/favoritesSlice';
 import filterReducer from '../slice/filterSlice';
 import toggleButtonReducer from '../slice/toggleButtonSlice';
 import deadlineReducer from '../slice/deadlineDataSlice';
+import searchBarReducer from '../slice/searchBarSlice';
 import { api } from './api.js';
 
 const store = configureStore({
@@ -13,6 +14,7 @@ const store = configureStore({
     filter: filterReducer,
     toggleButton: toggleButtonReducer,
     deadlineData: deadlineReducer,
+    searchBar: searchBarReducer,
     [api.reducerPath]: api.reducer,
   },
   middleware: (getDefaultMiddleware) =>
