@@ -4,8 +4,8 @@ import CardInfoProps from "../../../../interfaces/CardType";
 const CardEndingDate: React.FC<CardInfoProps> = ({ card }) => {
   return (
     <Box>
-      <Typography variant="h6">Завершение</Typography>
-      <Typography>
+      <Typography sx={{ fontSize: '14px', fontWeight: 'bold' }}>Завершение</Typography>
+      <Typography sx={{ fontSize: '14px' }}>
         {new Date(card.endingDate).toLocaleDateString('ru-RU', {
           day: '2-digit',
           month: '2-digit',

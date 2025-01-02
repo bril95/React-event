@@ -4,8 +4,8 @@ import CardInfoProps from "../../../../interfaces/CardType";
 const CardOrganization:React.FC<CardInfoProps> = ({ card }) => {
   return (
     <Box>
-      <Typography variant="h6">Организатор</Typography>
-      <Typography>{card.organization.title}</Typography>
+      <Typography sx={{ fontSize: '14px', fontWeight: 'bold' }}>Организатор</Typography>
+      <Typography sx={{ fontSize: '14px' }}>{card.organization.title}</Typography>
     </Box>
   )
 };

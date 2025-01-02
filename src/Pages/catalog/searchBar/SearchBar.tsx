@@ -8,7 +8,7 @@ const SearchBar = () => {
 
   const handleInput = (e: React.ChangeEvent<HTMLInputElement>,) => {
     const curretInput = e.target.value;
-    dispatch(setSearchBar(curretInput));
+    dispatch(setSearchBar(curretInput.trim()));
   };
 
   return (

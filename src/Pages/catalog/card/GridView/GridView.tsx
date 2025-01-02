@@ -9,7 +9,11 @@ import CardInfoProps from "../../../../interfaces/CardType";
 
 const GridView: React.FC<CardInfoProps> = ({ card }) => {
   return (
-    <Box>
+    <Box sx={{
+      display: 'flex',
+      flexDirection: 'column',
+      gap: '20px'
+    }}>
       <CardOrganization card={card} />
 
       <CardLocation card={card} />

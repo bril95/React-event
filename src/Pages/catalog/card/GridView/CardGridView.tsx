@@ -37,6 +37,7 @@ const CardGridView: React.FC<CardInfoProps> = ({ card }) => {
     <Card onClick={() => handleCardClick(card.id)}
       sx={{
         width: '320px',
+        height: '843px'
       }}>
       <CardMedia
         component="img"
@@ -48,9 +49,12 @@ const CardGridView: React.FC<CardInfoProps> = ({ card }) => {
           width: '100%',
         }}
       />
-      <CardContent>
+      <CardContent sx={{
+        p: 0,
+      }}>
         <Box sx={{
-          display: 'flex'
+          display: 'flex',
+          alignItems: 'flex-start'
         }}>
           <Typography variant="h5" sx={{
             height: '128px'

@@ -4,14 +4,14 @@ import CardInfoProps from "../../../../interfaces/CardType";
 const CardLocation: React.FC<CardInfoProps> = ({ card }) => {
   return (
     <Box>
-      <Typography variant="h6">Локация</Typography>
+      <Typography sx={{ fontSize: '14px', fontWeight: 'bold' }}>Локация</Typography>
       {
         card.helperRequirements.isOnline 
-        ? <Typography>Онлайн</Typography>
+        ? <Typography sx={{ fontSize: '14px' }}>Онлайн</Typography>
         : (
           <Box>
-            <Typography>Область: {card.location.district}</Typography>
-            <Typography>Населенный пункт: {card.location.city}</Typography>
+            <Typography sx={{ fontSize: '14px' }}>Область: {card.location.district}</Typography>
+            <Typography sx={{ fontSize: '14px' }}>Населенный пункт: {card.location.city}</Typography>
           </Box>
         )
       }

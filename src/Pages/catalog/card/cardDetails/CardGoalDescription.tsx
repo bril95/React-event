@@ -4,8 +4,8 @@ import CardInfoProps from "../../../../interfaces/CardType";
 const CardGoalDescription: React.FC<CardInfoProps> = ({ card }) => {
   return (
     <Box>
-      <Typography variant="h6">Цель сбора</Typography>
-      <Typography>{card.goalDescription}</Typography>
+      <Typography sx={{ fontSize: '14px', fontWeight: 'bold' }}>Цель сбора</Typography>
+      <Typography sx={{ fontSize: '14px' }}>{card.goalDescription}</Typography>
     </Box>
   )
 };
