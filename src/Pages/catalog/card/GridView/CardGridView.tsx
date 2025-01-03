@@ -1,4 +1,4 @@
-import { CardMedia, Card, CardContent, CardActions, Typography, Box, IconButton } from "@mui/material";
+import { CardMedia, Card, CardContent, CardActions, Typography, Box, IconButton, Divider } from "@mui/material";
 import StarIcon from '@mui/icons-material/Star';
 import GridView from "./GridView";
 import { useNavigate } from "react-router-dom";
@@ -37,7 +37,9 @@ const CardGridView: React.FC<CardInfoProps> = ({ card }) => {
     <Card onClick={() => handleCardClick(card.id)}
       sx={{
         width: '320px',
-        height: '843px'
+        height: '843px',
+        pl: '16px',
+        pr: '16px'
       }}>
       <CardMedia
         component="img"
@@ -54,11 +56,13 @@ const CardGridView: React.FC<CardInfoProps> = ({ card }) => {
       }}>
         <Box sx={{
           display: 'flex',
-          alignItems: 'flex-start'
+          alignItems: 'flex-start',
+          height: '128px',
+          pt: '16px',
+          pb: '17px',
+          boxSizing: 'border-box'
         }}>
-          <Typography variant="h5" sx={{
-            height: '128px'
-          }}>
+          <Typography variant="h5">
             {normalizeTitle(card.title)}
           </Typography>
           <IconButton disableRipple onClick={handleFavoriteClick}>
@@ -67,9 +71,10 @@ const CardGridView: React.FC<CardInfoProps> = ({ card }) => {
             />
           </IconButton>
         </Box>
+        <Divider />
         <GridView card={card}/>
       </CardContent>
-      <CardActions>
+      <CardActions sx={{p: 0, mt: '10px'}}>
         <HelpButton id={card.id}/>
       </CardActions>
     </Card>

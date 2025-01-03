@@ -6,7 +6,7 @@ const CardRequestProgress: React.FC<CardInfoProps> = ({ card }) => {
 
   return (
     <Box>
-      <Typography sx={{ fontSize: '14px', fontWeight: 'bold' }}>Мы собрали</Typography>
+      <Typography sx={{ fontSize: '14px', fontWeight: 'bold', mb: '4px' }}>Мы собрали</Typography>
       <LinearProgress variant="determinate" value={progress} />
       <Typography sx={{ fontSize: '14px' }}>
         {card.requestGoalCurrentValue} из {card.requestGoal} рублей

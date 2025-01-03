@@ -4,7 +4,7 @@ import CardInfoProps from "../../../../interfaces/CardType";
 const CardLocation: React.FC<CardInfoProps> = ({ card }) => {
   return (
     <Box>
-      <Typography sx={{ fontSize: '14px', fontWeight: 'bold' }}>Локация</Typography>
+      <Typography sx={{ fontSize: '14px', fontWeight: 'bold', mb: '4px' }}>Локация</Typography>
       {
         card.helperRequirements.isOnline 
         ? <Typography sx={{ fontSize: '14px' }}>Онлайн</Typography>

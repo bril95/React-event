@@ -12,7 +12,9 @@ const GridView: React.FC<CardInfoProps> = ({ card }) => {
     <Box sx={{
       display: 'flex',
       flexDirection: 'column',
-      gap: '20px'
+      gap: '20px',
+      mt: '10px',
+      height: '402px'
     }}>
       <CardOrganization card={card} />
 
@@ -23,6 +25,7 @@ const GridView: React.FC<CardInfoProps> = ({ card }) => {
       <CardEndingDate card={card} />
 
       <CardRequestProgress card={card} />
+
       <CardContributorsCount card={card} />
     </Box>
   );

@@ -10,6 +10,7 @@ import AltView from "./AltView";
 import CardRequestProgress from "../cardDetails/CardRequestProgress";
 import CardContributorsCount from "../cardDetails/CardContributorsCount";
 import CardInfoProps from "../../../../interfaces/CardType";
+import normalizeTitle from "../../../common/normalizeTitle";
 
 const CardAltView: React.FC<CardInfoProps> = ({ card }) => {
   const navigate = useNavigate();
@@ -41,7 +42,7 @@ const CardAltView: React.FC<CardInfoProps> = ({ card }) => {
             }}>
               <Typography variant="h5" sx={{
               }}>
-                {card.title}
+                {normalizeTitle(card.title)}
               </Typography>
             <CardRequestProgress card={card} />
             <CardContributorsCount card={card} />

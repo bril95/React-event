@@ -16,7 +16,6 @@ const HelpButton: React.FC<ButtonProps> = ({ id }) => {
         width: '100%',
         boxSizing: 'border-box',
         height: '42px',
-        mt: '10px',
       }}
       color="primary"
       variant="contained"
