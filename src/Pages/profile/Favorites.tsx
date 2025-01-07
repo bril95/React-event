@@ -2,39 +2,30 @@ import { Box } from "@mui/material";
 import {InfoProfileProps} from "../../interfaces/InfoProfileProps";
 import NotFoundPage from "../common/NotFoundPage";
 import { useEffect, useState } from "react";
-import axios from "axios";
-import { useSelector } from "react-redux";
-import { selectSetAuthUser } from "../../slice/authSlice";
 import ErrorPage from "../common/ErrorPage";
 import RenderGridCards from "../catalog/card/GridView/RenderGridCards";
 import { CardType } from "../../interfaces/CardType";
 import { initialCard } from "../../interfaces/CardType";
+import { useGetRequestListQuery } from "../../api/api";
 
 const Favorites: React.FC<InfoProfileProps> = ({ profile }) => {
   const [errorResp, setErrorResp] = useState(false);
-  const token = useSelector(selectSetAuthUser);
   const allFav = profile.favouriteRequests;
-  const [allFavCards, setAllFavCards] = useState<CardType[]>([initialCard])
+  const [allFavCards, setAllFavCards] = useState<CardType[]>([initialCard]);
+  const { data: allCards, error: errorAllCards } = useGetRequestListQuery({});
 
-  useEffect(()=> {
-    const getFavorite = async() => {
-      try{
-        const allCards = await axios.get<CardType[]>('http://localhost:4040/api/request', {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        });
-        const getFavCards = allFav.map((id) => allCards.data.find((card) => card.id === id))
-        setAllFavCards(getFavCards as CardType[]);
-        setErrorResp(false);
-      } catch(error) {
-        if (axios.isAxiosError(error) && error.response?.status === 500) {
-          setErrorResp(true);
-        }
-      }
+  useEffect(() => {
+    if (allCards) {
+      const getFavCards = allFav.map((id) => allCards.find((card) => card.id === id))
+      setAllFavCards(getFavCards as CardType[]);
+      setErrorResp(false);
     }
-    getFavorite();
-  }, [])
+
+    if(errorAllCards) {
+      setErrorResp(true);
+    }
+
+  }, [allCards, allFav, errorAllCards])
 
   return (
     <Box>

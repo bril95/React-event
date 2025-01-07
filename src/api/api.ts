@@ -27,20 +27,22 @@ export const api = createApi({
       query: () => routes.user.profile(),
     }),
 
-    getFavourites: builder.query<string[] | undefined, void>({
+    getFavourites: builder.query({
       query: () => routes.user.favourites(),
     }),
     addFavourites: builder.mutation({
-      query: (requestData) => ({
+      query: (requestId) => ({
         url: routes.user.favourites(),
         method: 'POST',
-        body: requestData,
-      }),
+        body: {requestId: requestId},
+        responseHandler: (response) => response.text(),
+      })
     }),
     removeFavourites: builder.mutation({
       query: (requestId) => ({
         url: routes.user.remove(requestId),
         method: 'DELETE',
+        responseHandler: (response) => response.text(),
       }),
     }),
 
@@ -51,10 +53,11 @@ export const api = createApi({
       query: () => routes.request.list(),
     }),
     contributeRequest: builder.mutation({
-      query: ({ id, contributionData }) => ({
+      query: (id) => ({
         url: routes.request.contribute(id),
         method: 'POST',
-        body: contributionData,
+        body: {},
+        responseHandler: (response) => response.text(),
       }),
     }),
   }),

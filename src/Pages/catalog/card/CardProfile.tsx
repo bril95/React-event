@@ -1,9 +1,7 @@
 import { Box } from "@mui/material"
 import { useEffect, useState } from "react";
 import HeaderCardProfile from "./HeaderCardProfile";
-import axios from "axios";
 import { useSelector } from 'react-redux';
-import { selectSetAuthUser } from "../../../slice/authSlice";
 import { setUpdateFavoritesId } from "../../../slice/favoritesSlice";
 import ErrorPage from "../../common/ErrorPage";
 import RenderGridCards from "./GridView/RenderGridCards";
@@ -12,39 +10,33 @@ import { selectToggleButton, setToggleButton } from "../../../slice/toggleButton
 import RenderAltCards from "./AltView/RenderAltCards";
 import Location from "./Location";
 import filterFunction from "./filterFunction";
+import { useGetRequestListQuery, useGetFavouritesQuery } from "../../../api/api";
 
 const CardProfile = () => {
-  const token = useSelector(selectSetAuthUser);
   const [cards, setCards] = useState([]);
   const [errorResp, setErrorResp] = useState(false);
   const dispatch = useDispatch();
   const toggleViewButton = useSelector(selectToggleButton);
+  const { data: allCards, error: errorAllCards } = useGetRequestListQuery({});
+  const { data: allFavoritesCards, error: errorFavoritersCards, refetch: refetchFavoritersCards } = useGetFavouritesQuery({});
 
   useEffect(() => {
-    const fetchCards = async () => {
-      try {
-        const allCards = await axios.get('http://localhost:4040/api/request', {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        });
-        const allFavoritesCards = await axios.get('http://localhost:4040/api/user/favourites', {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        });
-        setCards(allCards.data);
-        dispatch(setToggleButton('grid'))
-        dispatch(setUpdateFavoritesId(allFavoritesCards.data));
-      } catch (error) {
-        if (axios.isAxiosError(error) && error.response?.status === 500) {
-          setErrorResp(true);
-        }
-      }
-    };
+    if (errorFavoritersCards) {
+      refetchFavoritersCards();
+    }
 
-    fetchCards();
-  }, [])
+    if (errorAllCards) {
+      setErrorResp(true);
+    }
+
+    if (allCards && allFavoritesCards) {
+      setCards(allCards);
+      dispatch(setUpdateFavoritesId(allFavoritesCards));
+    }
+
+    dispatch(setToggleButton('grid'));
+
+  }, [allCards, allFavoritesCards, errorAllCards, errorFavoritersCards, dispatch])
 
   const filteredCards = filterFunction(cards);
 

@@ -16,7 +16,7 @@ const CardGridView: React.FC<CardInfoProps> = ({ card }) => {
   const clickFavoritesButton = useFavorites();
 
   const handleCardClick = (id: string) => {
-    navigate(`card/${id}`, { state: { id } });
+    navigate(`/card/${id}`, { state: { id } });
   }
 
   const handleFavoriteClick = (e: React.MouseEvent) => {

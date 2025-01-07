@@ -15,29 +15,27 @@ const CurrentCard = () => {
   const [card, setCard] = useState<CardType>(initialCard);
   const [errorResp, setErrorResp] = useState(false);
   const dispatch = useDispatch();
-  const { data: getFavouritesCards, isLoading: isLoadingGetFavourites, refetch, error} = useGetFavouritesQuery();
-  const { data: getCurrentCard, isLoading: isLoadingRequestDetails, error: errorRequestDetails } = useGetRequestDetailsQuery(id);
+  const { data: allFavoritesCards, error: errorFavoritersCards, refetch: refetchFavoritersCards } = useGetFavouritesQuery({});
+  const { data: getCurrentCard, error: errorRequestDetails } = useGetRequestDetailsQuery(id);
 
-  //Разобраться как быть с избранным в каждой карточке если она добавлена
   useEffect(() => {
-    if (error) {
-      refetch();
+    if (errorFavoritersCards) {
+      refetchFavoritersCards();
     }
-    if (!isLoadingGetFavourites && getFavouritesCards) {
-      dispatch(setUpdateFavoritesId(getFavouritesCards));
+
+    if (allFavoritesCards) {
+      dispatch(setUpdateFavoritesId(allFavoritesCards));
       setErrorResp(false);
     }
-  }, [isLoadingGetFavourites, getFavouritesCards, dispatch, error, refetch]);
-  
-  useEffect(() => {
-    if (!isLoadingRequestDetails && getCurrentCard) {
+
+    if (getCurrentCard) {
       setCard(getCurrentCard);
       setErrorResp(false);
-    } else if (errorRequestDetails) {
-      console.error(errorRequestDetails);
+    }
+    if (errorRequestDetails) {
       setErrorResp(true);
     }
-  }, [isLoadingRequestDetails, getCurrentCard, errorRequestDetails]);
+  }, [getCurrentCard, errorRequestDetails, allFavoritesCards, dispatch, errorFavoritersCards, refetchFavoritersCards]);
 
   return (
     <Box>

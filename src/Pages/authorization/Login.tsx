@@ -4,13 +4,13 @@ import { Visibility, VisibilityOff } from '@mui/icons-material';
 import * as Yup from 'yup';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { SubmitHandler, useForm, Controller } from 'react-hook-form';
-import axios from 'axios';
 import { AppDispatch } from '../../api/store';
 import { setAuthUser, setIsAuthorized } from '../../slice/authSlice';
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import MyForm from '../../interfaces/LoginType';
+import { useLoginUserMutation } from '../../api/api';
 
 const validationSchema = Yup.object().shape({
   login: Yup.string()
@@ -26,6 +26,7 @@ const Login = () => {
   const handleClickShowPassword = () => setShowPassword((show) => !show);
   const dispatch = useDispatch<AppDispatch>();
   const navigate = useNavigate();
+  const [setLoginUser, { error: errorLoginUser }] = useLoginUserMutation();
 
   const {
     control,
@@ -50,28 +51,28 @@ const Login = () => {
 
   const submit: SubmitHandler<MyForm> = async (data) => {
     try {
-      const response = await axios.post('http://localhost:4040/api/auth', data);
-      const token = response.data.token;
-      const isAuthorized = response.data.auth;
+      const response = await setLoginUser(data).unwrap();
+      const token = response.token;
+      const isAuthorized = response.auth;
       dispatch(setAuthUser(token));
       dispatch(setIsAuthorized(isAuthorized));
       navigate('/');
       resetForm();
     } catch (error) {
-      if (axios.isAxiosError(error)) {
-        if (error.response?.status === 400) {
-          setError('login', {
-            type: 'manual',
-            message: 'Некорректный логин или пароль',
-          });
-          setError('password', {
-            type: 'manual',
-            message: 'Некорректный логин или пароль',
-          });
-        } else if (error.response?.status === 500) {
-          toast.error('Ошибка! Попробуйте еще раз');
-          console.log('Ошибка! Попробуйте еще раз');
-        }
+      console.error(error);
+      console.error(111, errorLoginUser);
+      if(errorLoginUser) {
+        setError('login', {
+          type: 'manual',
+          message: 'Некорректный логин или пароль',
+        });
+        setError('password', {
+          type: 'manual',
+          message: 'Некорректный логин или пароль',
+        });
+      } else {
+        toast.error('Ошибка! Попробуйте еще раз');
+        console.log('Ошибка! Попробуйте еще раз');
       }
     }
   };

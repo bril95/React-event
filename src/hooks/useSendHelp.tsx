@@ -1,29 +1,22 @@
-import axios from "axios";
-import { useSelector } from "react-redux";
-import { selectSetAuthUser } from "../slice/authSlice";
 import { toast } from 'react-toastify';
+import { useContributeRequestMutation } from "../api/api";
 
 const useSendHelp = () => {
-  const token = useSelector(selectSetAuthUser);
+  const [contributeRequest, {error: errorContributeRequest}] = useContributeRequestMutation();
 
   const sendHelp = async (id: string) => {
     try {
-      await axios.post(
-        `http://localhost:4040/api/request/${id}/contribution`,
-        {},
-        {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        }
-      );
+      const response = await contributeRequest(id).unwrap();
+      console.log(response);
       toast.success('Успех! Спасибо за помощь');
     } catch (error) {
-      if (axios.isAxiosError(error) && error.response?.status === 500) {
+      console.error(errorContributeRequest);
+      if (error) {
         toast.error('Ошибка! Попробуйте еще раз');
       }
     }
-  }
+  };
+
   return sendHelp;
 };
 
