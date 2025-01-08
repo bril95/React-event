@@ -16,7 +16,7 @@ const Favorites: React.FC<InfoProfileProps> = ({ profile }) => {
 
   useEffect(() => {
     if (allCards) {
-      const getFavCards = allFav.map((id) => allCards.find((card) => card.id === id))
+      const getFavCards = allFav.map((id) => allCards.find((card: CardType) => card.id === id))
       setAllFavCards(getFavCards as CardType[]);
       setErrorResp(false);
     }

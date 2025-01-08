@@ -13,8 +13,7 @@ const useFavorites = () => {
 
   const addFavorites = async (id: string) => {
     try {
-      const resp = await addToFavorites(id).unwrap();
-      console.log(resp)
+      await addToFavorites(id).unwrap();
       dispatch(setFavoritesId(id));
       toast.success('Успех! Добавлено в избранное');
     } catch (error) {

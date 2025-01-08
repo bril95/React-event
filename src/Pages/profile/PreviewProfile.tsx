@@ -1,8 +1,9 @@
 import { Box, Button, Typography } from "@mui/material";
 import cardMedia from '../../assets/сardMedia.svg';
 import useLogout from "../../hooks/useLogout";
+import { InfoProfileProps } from "../../interfaces/InfoProfileProps";
 
-const PreviewProfile = ({ profile }) => {
+const PreviewProfile: React.FC<InfoProfileProps> = ({ profile }) => {
   const handleLogout = useLogout();
 
   return (

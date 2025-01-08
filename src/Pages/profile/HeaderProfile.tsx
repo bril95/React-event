@@ -3,7 +3,7 @@ import { useState } from "react";
 import InfoProfile from "./InfoProfile";
 import Contacts from "./Contacts";
 import Favorites from "./Favorites";
-import {InfoProfileProps} from "../../interfaces/InfoProfileProps";
+import { InfoProfileProps } from "../../interfaces/InfoProfileProps";
 
 const HeaderProfile: React.FC<InfoProfileProps>= ({ profile }) => {
   const [activeTab, setActiveTab] = useState("info");
